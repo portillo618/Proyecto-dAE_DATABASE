@@ -38,6 +38,7 @@
             btnCancelar = new Button();
             btnActualizarEstado = new Button();
             textBox1 = new TextBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
             SuspendLayout();
             // 
@@ -126,11 +127,21 @@
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 10;
             // 
+            // button1
+            // 
+            button1.Location = new Point(917, 106);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 11;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Devoluciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1114, 583);
+            Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(btnActualizarEstado);
             Controls.Add(btnCancelar);
@@ -161,5 +172,6 @@
         private Button btnCancelar;
         private Button btnActualizarEstado;
         private TextBox textBox1;
+        private Button button1;
     }
 }
