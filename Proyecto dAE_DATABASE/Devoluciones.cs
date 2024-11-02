@@ -18,7 +18,7 @@ namespace Proyecto_dAE_DATABASE
         private void Devoluciones_Load(object sender, EventArgs e)
         {
             // Cargar los datos desde la vista en el DataGridView
-            dgvPrestamos.DataSource = contexto.DetallePrestamosViews.ToList();
+            //dgvPrestamos.DataSource = contexto.DetallePrestamosViews.ToList();
         }
 
         private void dgvPrestamos_CellContentClick(object sender, DataGridViewCellEventArgs e)
