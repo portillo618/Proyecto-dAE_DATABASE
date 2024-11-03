@@ -40,5 +40,21 @@ namespace Proyecto_dAE_DATABASE
                 MessageBox.Show("No tienes permisos");
             }
         }
+
+        private void dEVOLUCIONESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                Devoluciones frmde = new Devoluciones();
+                frmde.MdiParent = this;
+                frmde.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos");
+            }
+        }
+
     }
 }

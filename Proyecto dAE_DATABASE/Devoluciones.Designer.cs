@@ -35,10 +35,10 @@
             dgvPrestamos = new DataGridView();
             btnBuscar = new Button();
             btnConfirmarDev = new Button();
-            btnCancelar = new Button();
-            btnActualizarEstado = new Button();
-            textBox1 = new TextBox();
-            button1 = new Button();
+            label1 = new Label();
+            txtCantidad = new TextBox();
+            txtEstado = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
             SuspendLayout();
             // 
@@ -61,26 +61,28 @@
             lblcarne.AutoSize = true;
             lblcarne.Location = new Point(58, 98);
             lblcarne.Name = "lblcarne";
-            lblcarne.Size = new Size(47, 20);
+            lblcarne.Size = new Size(71, 20);
             lblcarne.TabIndex = 3;
-            lblcarne.Text = "Carne";
+            lblcarne.Text = "USUARIO";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
             lblNombre.Location = new Point(387, 98);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(124, 20);
+            lblNombre.Size = new Size(99, 20);
             lblNombre.TabIndex = 4;
-            lblNombre.Text = "Nombre receptor";
+            lblNombre.Text = "IMPLEMENTO";
             // 
             // dgvPrestamos
             // 
             dgvPrestamos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPrestamos.Location = new Point(58, 257);
+            dgvPrestamos.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvPrestamos.Location = new Point(28, 234);
             dgvPrestamos.Name = "dgvPrestamos";
             dgvPrestamos.RowHeadersWidth = 51;
-            dgvPrestamos.Size = new Size(862, 314);
+            dgvPrestamos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPrestamos.Size = new Size(1059, 337);
             dgvPrestamos.TabIndex = 5;
             dgvPrestamos.CellContentClick += dgvPrestamos_CellContentClick;
             // 
@@ -92,6 +94,7 @@
             btnBuscar.TabIndex = 6;
             btnBuscar.Text = "BUSCAR PRESTAMO";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // btnConfirmarDev
             // 
@@ -99,52 +102,51 @@
             btnConfirmarDev.Name = "btnConfirmarDev";
             btnConfirmarDev.Size = new Size(226, 29);
             btnConfirmarDev.TabIndex = 7;
-            btnConfirmarDev.Text = "CONFIRMAR DEVOLUCIÓN";
+            btnConfirmarDev.Text = "MODIFICAR ESTADO";
             btnConfirmarDev.UseVisualStyleBackColor = true;
+            btnConfirmarDev.Click += btnConfirmarDev_Click;
             // 
-            // btnCancelar
+            // label1
             // 
-            btnCancelar.Location = new Point(528, 158);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(187, 29);
-            btnCancelar.TabIndex = 8;
-            btnCancelar.Text = "CANCELAR";
-            btnCancelar.UseVisualStyleBackColor = true;
+            label1.AutoSize = true;
+            label1.Location = new Point(677, 98);
+            label1.Name = "label1";
+            label1.Size = new Size(83, 20);
+            label1.TabIndex = 8;
+            label1.Text = "CANTIDAD";
             // 
-            // btnActualizarEstado
+            // txtCantidad
             // 
-            btnActualizarEstado.Location = new Point(756, 158);
-            btnActualizarEstado.Name = "btnActualizarEstado";
-            btnActualizarEstado.Size = new Size(204, 29);
-            btnActualizarEstado.TabIndex = 9;
-            btnActualizarEstado.Text = "ACTUALIZAR ESTADO";
-            btnActualizarEstado.UseVisualStyleBackColor = true;
+            txtCantidad.Location = new Point(677, 68);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new Size(160, 27);
+            txtCantidad.TabIndex = 9;
             // 
-            // textBox1
+            // txtEstado
             // 
-            textBox1.Location = new Point(835, 68);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 10;
+            txtEstado.Location = new Point(901, 68);
+            txtEstado.Name = "txtEstado";
+            txtEstado.Size = new Size(125, 27);
+            txtEstado.TabIndex = 10;
             // 
-            // button1
+            // label2
             // 
-            button1.Location = new Point(917, 106);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 11;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            label2.AutoSize = true;
+            label2.Location = new Point(901, 98);
+            label2.Name = "label2";
+            label2.Size = new Size(64, 20);
+            label2.TabIndex = 11;
+            label2.Text = "ESTADO";
             // 
             // Devoluciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1114, 583);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(btnActualizarEstado);
-            Controls.Add(btnCancelar);
+            Controls.Add(label2);
+            Controls.Add(txtEstado);
+            Controls.Add(txtCantidad);
+            Controls.Add(label1);
             Controls.Add(btnConfirmarDev);
             Controls.Add(btnBuscar);
             Controls.Add(dgvPrestamos);
@@ -169,9 +171,9 @@
         private DataGridView dgvPrestamos;
         private Button btnBuscar;
         private Button btnConfirmarDev;
-        private Button btnCancelar;
-        private Button btnActualizarEstado;
-        private TextBox textBox1;
-        private Button button1;
+        private Label label1;
+        private TextBox txtCantidad;
+        private TextBox txtEstado;
+        private Label label2;
     }
 }

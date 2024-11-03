@@ -17,7 +17,7 @@ public partial class Usuario
 
     public int IdRol { get; set; }
 
-    public int? Telefono { get; set; }
+    public int Telefono { get; set; }
 
     public string Contrasenia { get; set; } = null!;
 
