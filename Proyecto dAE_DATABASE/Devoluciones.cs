@@ -22,21 +22,13 @@ namespace Proyecto_dAE_DATABASE
 
         private void CargarPrestamosPendientes()
         {
-            var datosPrestamos = contexto.DetallePrestamos
-        .Include(d => d.IdPrestamoNavigation.IdReceptorNavigation) // Ajustado para usar IdReceptorNavigation
-        .Include(d => d.IdImplementoNavigation)
-        .Select(d => new
+            var datosPrestamos = contexto.DetallePrestamos.Include(d => d.IdPrestamoNavigation.IdReceptorNavigation) 
+                                                            .Include(d => d.IdImplementoNavigation).Select(d => new
         {
             IdDetallePrestamo = d.IdDetallePrestamo,
-            Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario, // Usa IdReceptorNavigation aquí
-            Articulo = d.IdImplementoNavigation.Tipo,
-            FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
-            Estado = d.Estado,
-            CantidadPrestada = d.CantidadPrestada
-        })
-        .ToList();
-
-           
+            Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,Articulo = d.IdImplementoNavigation.Tipo,
+            FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,Estado = d.Estado,CantidadPrestada = d.CantidadPrestada}).ToList();
+                       
             dgvPrestamos.DataSource = datosPrestamos;
         }
 
@@ -47,7 +39,6 @@ namespace Proyecto_dAE_DATABASE
             {
                 DataGridViewRow selectedRow = dgvPrestamos.Rows[e.RowIndex];
 
-                
                 txtIDUsuario.Text = selectedRow.Cells["Usuario"].Value.ToString();
                 txtNombreReceptor.Text = selectedRow.Cells["Articulo"].Value.ToString();
                 txtCantidad.Text = selectedRow.Cells["CantidadPrestada"].Value.ToString(); 
@@ -71,9 +62,7 @@ namespace Proyecto_dAE_DATABASE
                     Articulo = d.IdImplementoNavigation.Tipo,
                     FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
                     Estado = d.Estado,
-                    CantidadPrestada = d.CantidadPrestada
-                })
-                .ToList();
+                    CantidadPrestada = d.CantidadPrestada}).ToList();
 
             
             dgvPrestamos.DataSource = resultadosBusqueda;
@@ -103,7 +92,6 @@ namespace Proyecto_dAE_DATABASE
                         MessageBox.Show("Por favor, ingrese un estado válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-
                     detallePrestamo.Estado = nuevoEstado;
                     contexto.SaveChanges();
 
