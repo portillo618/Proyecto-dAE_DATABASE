@@ -32,7 +32,6 @@
             btnAgregar = new Button();
             btnEliminar = new Button();
             btnModificar = new Button();
-            btnConfirmar = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -47,7 +46,6 @@
             numCantidad = new NumericUpDown();
             label8 = new Label();
             label4 = new Label();
-            cmbDeporte = new ComboBox();
             txtbNombre = new TextBox();
             txtbCarrera = new TextBox();
             txtbEscuela = new TextBox();
@@ -57,6 +55,9 @@
             label9 = new Label();
             dtPrestamo = new DateTimePicker();
             dtDevolucion = new DateTimePicker();
+            cmbDeporte = new TextBox();
+            label10 = new Label();
+            cmbEstado = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)DataGridPrestamos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidad).BeginInit();
             SuspendLayout();
@@ -104,17 +105,6 @@
             btnModificar.Text = "Modificar Registro";
             btnModificar.UseVisualStyleBackColor = true;
             btnModificar.Click += btnModificar_Click;
-            // 
-            // btnConfirmar
-            // 
-            btnConfirmar.Location = new Point(721, 483);
-            btnConfirmar.Margin = new Padding(3, 2, 3, 2);
-            btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(190, 22);
-            btnConfirmar.TabIndex = 4;
-            btnConfirmar.Text = "Confirmar Modificacion";
-            btnConfirmar.UseVisualStyleBackColor = true;
-            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // label1
             // 
@@ -245,16 +235,6 @@
             label4.TabIndex = 19;
             label4.Text = "Deporte";
             // 
-            // cmbDeporte
-            // 
-            cmbDeporte.FormattingEnabled = true;
-            cmbDeporte.Items.AddRange(new object[] { "Red de Voleibol", "Raqueta", "Cronometro" });
-            cmbDeporte.Location = new Point(365, 235);
-            cmbDeporte.Margin = new Padding(3, 2, 3, 2);
-            cmbDeporte.Name = "cmbDeporte";
-            cmbDeporte.Size = new Size(133, 23);
-            cmbDeporte.TabIndex = 20;
-            // 
             // txtbNombre
             // 
             txtbNombre.Location = new Point(285, 126);
@@ -332,11 +312,41 @@
             dtDevolucion.Size = new Size(220, 23);
             dtDevolucion.TabIndex = 29;
             // 
+            // cmbDeporte
+            // 
+            cmbDeporte.Location = new Point(365, 235);
+            cmbDeporte.Name = "cmbDeporte";
+            cmbDeporte.ReadOnly = true;
+            cmbDeporte.Size = new Size(133, 23);
+            cmbDeporte.TabIndex = 30;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(535, 411);
+            label10.Name = "label10";
+            label10.Size = new Size(42, 15);
+            label10.TabIndex = 31;
+            label10.Text = "Estado";
+            // 
+            // cmbEstado
+            // 
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Items.AddRange(new object[] { "Devuelto", "Pendiente" });
+            cmbEstado.Location = new Point(578, 408);
+            cmbEstado.Margin = new Padding(3, 2, 3, 2);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(133, 23);
+            cmbEstado.TabIndex = 32;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(996, 710);
+            Controls.Add(cmbEstado);
+            Controls.Add(label10);
+            Controls.Add(cmbDeporte);
             Controls.Add(dtDevolucion);
             Controls.Add(dtPrestamo);
             Controls.Add(label9);
@@ -346,7 +356,6 @@
             Controls.Add(txtbEscuela);
             Controls.Add(txtbCarrera);
             Controls.Add(txtbNombre);
-            Controls.Add(cmbDeporte);
             Controls.Add(label4);
             Controls.Add(label8);
             Controls.Add(numCantidad);
@@ -361,7 +370,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(btnConfirmar);
             Controls.Add(btnModificar);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
@@ -381,7 +389,6 @@
         private Button btnAgregar;
         private Button btnEliminar;
         private Button btnModificar;
-        private Button btnConfirmar;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -396,7 +403,6 @@
         private NumericUpDown numCantidad;
         private Label label8;
         private Label label4;
-        private ComboBox cmbDeporte;
         private TextBox txtbNombre;
         private TextBox txtbCarrera;
         private TextBox txtbEscuela;
@@ -406,5 +412,8 @@
         private Label label9;
         private DateTimePicker dtPrestamo;
         private DateTimePicker dtDevolucion;
+        private TextBox cmbDeporte;
+        private Label label10;
+        private ComboBox cmbEstado;
     }
 }

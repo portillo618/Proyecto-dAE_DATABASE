@@ -59,17 +59,9 @@ namespace Proyecto_dAE_DATABASE
 
         private void pRESTAMOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.usuario.IdRol == 3)
-            {
-                Form1 frmde = new Form1();
-                frmde.MdiParent = this;
-                frmde.Show();
-
-            }
-            else
-            {
-                MessageBox.Show("No tienes permisos");
-            }
-        }
+            Form1 frmde = new Form1();
+            frmde.MdiParent = this;
+            frmde.Show();
+    }
     }
 }
