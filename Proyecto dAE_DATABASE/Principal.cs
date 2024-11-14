@@ -1,4 +1,5 @@
-﻿using Proyecto_dAE_DATABASE.Modelo;
+﻿using Prestaform;
+using Proyecto_dAE_DATABASE.Modelo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,5 +57,19 @@ namespace Proyecto_dAE_DATABASE
             }
         }
 
+        private void pRESTAMOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                Form1 frmde = new Form1();
+                frmde.MdiParent = this;
+                frmde.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos");
+            }
+        }
     }
 }

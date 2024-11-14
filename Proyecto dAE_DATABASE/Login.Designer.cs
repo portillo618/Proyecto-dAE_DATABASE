@@ -49,11 +49,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(187, 134);
+            label2.Location = new Point(160, 134);
             label2.Name = "label2";
-            label2.Size = new Size(56, 15);
+            label2.Size = new Size(103, 15);
             label2.TabIndex = 1;
-            label2.Text = "USUARIO";
+            label2.Text = "CARNET USUARIO";
             // 
             // label3
             // 

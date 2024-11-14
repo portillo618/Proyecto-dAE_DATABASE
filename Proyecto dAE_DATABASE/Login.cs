@@ -33,7 +33,7 @@ namespace Proyecto_dAE_DATABASE
             try
             {
                 BodegaContext contexto = new BodegaContext();
-                var usuario = contexto.Usuarios.Where(x => x.NombreUsuario.Equals(txtbUsuario.Text) &&
+                var usuario = contexto.Usuarios.Where(x => x.CarneBiblioteca == int.Parse(txtbUsuario.Text) &&
                                                       x.Contrasenia.Equals(txtbContrasenia.Text)).ToArray();
                 if (usuario.Length > 0)
                 {
