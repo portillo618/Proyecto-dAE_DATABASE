@@ -26,6 +26,7 @@ namespace Proyecto_dAE_DATABASE
         {
             InitializeComponent();
             CargarGrid();
+            CargarImplementos();
             // Ajustar dinámicamente los límites de los NumericUpDown
             nudFactura.Maximum = 10000;
             nudImplemento.Maximum = 10000;
@@ -51,35 +52,58 @@ namespace Proyecto_dAE_DATABASE
             }
         }
 
+        private void CargarImplementos()
+        {
+            using (var context = new BodegaContext())
+            {
+                // Obtener los IDs de implementos existentes
+                var idsImplementos = context.Implementos.Select(i => i.IdImplemento).ToList();
+
+                if (idsImplementos.Any())
+                {
+                    // Establecer el rango de valores del NumericUpDown
+                    nudImplemento.Minimum = idsImplementos.Min();
+                    nudImplemento.Maximum = idsImplementos.Max();
+                }
+                else
+                {
+                    // Si no hay implementos, deshabilitar el NumericUpDown
+                    nudImplemento.Minimum = 0;
+                    nudImplemento.Maximum = 0;
+                    nudImplemento.Enabled = false;
+
+                    MessageBox.Show("No hay implementos disponibles en la base de datos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
         private void dataGridView1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0) // Validar que no se haya hecho clic en el encabezado
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                // Obtener la fila seleccionada
                 var filaSeleccionada = dataGridView1.SelectedRows[0];
 
-                // Obtener los valores de las celdas
                 decimal numFactura = Convert.ToDecimal(filaSeleccionada.Cells["NumFactura"].Value);
                 decimal idImplemento = Convert.ToDecimal(filaSeleccionada.Cells["IdImplemento"].Value);
                 decimal cantidad = Convert.ToDecimal(filaSeleccionada.Cells["Cantidad"].Value);
 
-                // Asignar valores a los NumericUpDown
                 nudFactura.Value = numFactura;
                 nudImplemento.Value = idImplemento;
                 nudCantidad.Value = cantidad;
 
-                // Obtener el nombre del implemento y su deporte correspondiente
                 using (var context = new BodegaContext())
                 {
-                    var implemento = context.Implementos
-                        .Include(i => i.IdDeporteNavigation)  // Incluir la relación de Deporte
-                        .FirstOrDefault(i => i.IdImplemento == idImplemento);
+                    var ingreso = context.IngresoMaterials
+                        .Include(im => im.IdImplementoNavigation)
+                        .ThenInclude(i => i.IdDeporteNavigation)
+                        .FirstOrDefault(im => im.NumFactura == (int)numFactura);
 
-                    if (implemento != null)
+                    if (ingreso != null)
                     {
-                        // Asignar el nombre del implemento y su deporte correspondiente
-                        txtbImplemento.Text = implemento.Tipo;
-                        txtbDeporte.Text = implemento.IdDeporteNavigation.NombreDeporte; // Asumiendo que el campo 'Deporte' está presente en la entidad Implemento
+                        txtbImplemento.Text = ingreso.IdImplementoNavigation?.Tipo ?? "N/A";
+                        txtbDeporte.Text = ingreso.IdImplementoNavigation?.IdDeporteNavigation?.NombreDeporte ?? "N/A";
+                        rtbDescripcion.Text = ingreso.Descripcion ?? ""; // Cargar la descripción en el RichTextBox
                     }
                 }
             }
@@ -124,10 +148,12 @@ namespace Proyecto_dAE_DATABASE
             int idImplemento = (int)nudImplemento.Value;
             int numFactura = (int)nudFactura.Value;
             int cantidad = (int)nudCantidad.Value;
+            string descripcion = rtbDescripcion.Text; // Obtener la descripción del RichTextBox
 
             using (var context = new BodegaContext())
             {
                 var implemento = context.Implementos.Find(idImplemento);
+
                 // Verificar si el número de factura ya existe
                 bool existe = context.IngresoMaterials.Any(im => im.NumFactura == numFactura);
                 if (existe)
@@ -147,7 +173,7 @@ namespace Proyecto_dAE_DATABASE
                     NumFactura = numFactura,
                     IdImplemento = idImplemento,
                     Cantidad = cantidad,
-                    Descripcion = implemento.Descripcion,
+                    Descripcion = descripcion, // Guardar la descripción ingresada
                     Fecha = DateOnly.FromDateTime(DateTime.Now)
                 };
                 context.IngresoMaterials.Add(nuevoIngreso);
@@ -160,6 +186,9 @@ namespace Proyecto_dAE_DATABASE
 
                 // Recargar el DataGridView
                 CargarGrid();
+
+                // Limpiar el RichTextBox después de agregar
+                rtbDescripcion.Clear();
             }
         }
 
@@ -176,41 +205,34 @@ namespace Proyecto_dAE_DATABASE
                     return;
                 }
 
-                // Obtener el IdImplemento y la cantidad de manera segura
-                int? idImplementoNullable = ingreso.IdImplemento; // Usamos int? para permitir valores null
-                int? cantidadNullable = ingreso.Cantidad; // Usamos int? para permitir valores null
+                int? idImplementoNullable = ingreso.IdImplemento;
+                int? cantidadNullable = ingreso.Cantidad;
 
-                // Verificar que los valores no sean null
                 if (idImplementoNullable.HasValue && cantidadNullable.HasValue)
                 {
-                    int idImplemento = idImplementoNullable.Value;  // Extraemos el valor si no es null
-                    int cantidad = cantidadNullable.Value;  // Extraemos el valor si no es null
+                    int idImplemento = idImplementoNullable.Value;
+                    int cantidad = cantidadNullable.Value;
 
-                    // Actualizar el registro con los nuevos valores
                     ingreso.IdImplemento = (int)nudImplemento.Value;
                     ingreso.Cantidad = (int)nudCantidad.Value;
+                    ingreso.Descripcion = rtbDescripcion.Text; // Actualizar la descripción
                     ingreso.Fecha = DateOnly.FromDateTime(DateTime.Now);
 
-                    // Actualizar el implemento (en caso de que se haya cambiado la cantidad)
                     var implemento = context.Implementos.FirstOrDefault(i => i.IdImplemento == idImplemento);
                     if (implemento != null)
                     {
-                        implemento.Cantidad -= (cantidad - (int)nudCantidad.Value);  // Restamos la diferencia de cantidad
+                        implemento.Cantidad -= (cantidad - (int)nudCantidad.Value);
                     }
 
-                    // Guardar cambios en la base de datos
                     context.SaveChanges();
 
                     MessageBox.Show("Registro modificado exitosamente.");
-
-                    // Recargar el DataGridView
                     CargarGrid();
                 }
                 else
                 {
                     MessageBox.Show("No se pudo obtener la cantidad o el implemento.");
                 }
-
             }
         }
 
@@ -363,5 +385,30 @@ namespace Proyecto_dAE_DATABASE
             }
         }
 
+        private void nudImplemento_ValueChanged(object sender, EventArgs e)
+        {
+            int idImplementoSeleccionado = (int)nudImplemento.Value;
+
+            using (var context = new BodegaContext())
+            {
+                // Buscar el implemento en la base de datos
+                var implemento = context.Implementos
+                    .Include(i => i.IdDeporteNavigation) // Incluir relación con deporte
+                    .FirstOrDefault(i => i.IdImplemento == idImplementoSeleccionado);
+
+                if (implemento != null)
+                {
+                    // Mostrar nombre y deporte del implemento
+                    txtbImplemento.Text = implemento.Tipo;
+                    txtbDeporte.Text = implemento.IdDeporteNavigation?.NombreDeporte ?? "Sin deporte asignado";
+                }
+                else
+                {
+                    // Si no se encuentra, limpiar los campos
+                    txtbImplemento.Clear();
+                    txtbDeporte.Clear();
+                }
+            }
+        }
     }
 }

@@ -35,13 +35,14 @@
             dEVOLUCIONESToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDEIMPLEMENTOSToolStripMenuItem = new ToolStripMenuItem();
             iNGRESOMATERIALNUEVOToolStripMenuItem = new ToolStripMenuItem();
+            sALIRToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { mENUToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { mENUToolStripMenuItem, sALIRToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -91,6 +92,12 @@
             iNGRESOMATERIALNUEVOToolStripMenuItem.Text = "INGRESO MATERIAL NUEVO";
             iNGRESOMATERIALNUEVOToolStripMenuItem.Click += iNGRESOMATERIALNUEVOToolStripMenuItem_Click;
             // 
+            // sALIRToolStripMenuItem
+            // 
+            sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
+            sALIRToolStripMenuItem.Size = new Size(49, 20);
+            sALIRToolStripMenuItem.Text = "SALIR";
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -115,5 +122,6 @@
         private ToolStripMenuItem dEVOLUCIONESToolStripMenuItem;
         private ToolStripMenuItem gESTIONDEIMPLEMENTOSToolStripMenuItem;
         private ToolStripMenuItem iNGRESOMATERIALNUEVOToolStripMenuItem;
+        private ToolStripMenuItem sALIRToolStripMenuItem;
     }
 }

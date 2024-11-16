@@ -49,6 +49,8 @@
             txtbDeporte = new TextBox();
             btnRefrescar = new Button();
             btnGenerarFactura = new Button();
+            label5 = new Label();
+            rtbDescripcion = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudFactura).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudImplemento).BeginInit();
@@ -68,7 +70,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 389);
+            dataGridView1.Location = new Point(12, 407);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(776, 179);
@@ -106,10 +108,11 @@
             nudImplemento.Name = "nudImplemento";
             nudImplemento.Size = new Size(120, 23);
             nudImplemento.TabIndex = 6;
+            nudImplemento.ValueChanged += nudImplemento_ValueChanged;
             // 
             // nudCantidad
             // 
-            nudCantidad.Location = new Point(255, 172);
+            nudCantidad.Location = new Point(217, 172);
             nudCantidad.Name = "nudCantidad";
             nudCantidad.Size = new Size(120, 23);
             nudCantidad.TabIndex = 7;
@@ -117,7 +120,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(255, 154);
+            label4.Location = new Point(217, 154);
             label4.Name = "label4";
             label4.Size = new Size(102, 15);
             label4.TabIndex = 8;
@@ -125,7 +128,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(36, 342);
+            btnAgregar.Location = new Point(36, 360);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 11;
@@ -135,7 +138,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(134, 342);
+            btnModificar.Location = new Point(134, 360);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 23);
             btnModificar.TabIndex = 12;
@@ -145,7 +148,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(236, 342);
+            btnEliminar.Location = new Point(236, 360);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 13;
@@ -157,21 +160,21 @@
             // 
             cmbParametro.FormattingEnabled = true;
             cmbParametro.Items.AddRange(new object[] { "Número de Factura", "ID del Implemento" });
-            cmbParametro.Location = new Point(616, 343);
+            cmbParametro.Location = new Point(616, 361);
             cmbParametro.Name = "cmbParametro";
             cmbParametro.Size = new Size(156, 23);
             cmbParametro.TabIndex = 14;
             // 
             // txtbBusqueda
             // 
-            txtbBusqueda.Location = new Point(434, 343);
+            txtbBusqueda.Location = new Point(434, 361);
             txtbBusqueda.Name = "txtbBusqueda";
             txtbBusqueda.Size = new Size(162, 23);
             txtbBusqueda.TabIndex = 15;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(434, 314);
+            btnBuscar.Location = new Point(434, 332);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 23);
             btnBuscar.TabIndex = 16;
@@ -182,7 +185,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(620, 315);
+            label6.Location = new Point(620, 333);
             label6.Name = "label6";
             label6.Size = new Size(133, 15);
             label6.TabIndex = 17;
@@ -224,7 +227,7 @@
             // 
             // btnRefrescar
             // 
-            btnRefrescar.Location = new Point(434, 285);
+            btnRefrescar.Location = new Point(434, 303);
             btnRefrescar.Name = "btnRefrescar";
             btnRefrescar.Size = new Size(75, 23);
             btnRefrescar.TabIndex = 22;
@@ -234,7 +237,7 @@
             // 
             // btnGenerarFactura
             // 
-            btnGenerarFactura.Location = new Point(36, 311);
+            btnGenerarFactura.Location = new Point(36, 329);
             btnGenerarFactura.Name = "btnGenerarFactura";
             btnGenerarFactura.Size = new Size(111, 23);
             btnGenerarFactura.TabIndex = 23;
@@ -242,11 +245,30 @@
             btnGenerarFactura.UseVisualStyleBackColor = true;
             btnGenerarFactura.Click += btnGenerarFactura_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(390, 154);
+            label5.Name = "label5";
+            label5.Size = new Size(102, 15);
+            label5.TabIndex = 24;
+            label5.Text = "Cantidad Entrante";
+            // 
+            // rtbDescripcion
+            // 
+            rtbDescripcion.Location = new Point(392, 172);
+            rtbDescripcion.Name = "rtbDescripcion";
+            rtbDescripcion.Size = new Size(296, 75);
+            rtbDescripcion.TabIndex = 25;
+            rtbDescripcion.Text = "";
+            // 
             // IngresoMaterialNuevo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 580);
+            ClientSize = new Size(800, 722);
+            Controls.Add(rtbDescripcion);
+            Controls.Add(label5);
             Controls.Add(btnGenerarFactura);
             Controls.Add(btnRefrescar);
             Controls.Add(txtbDeporte);
@@ -301,5 +323,7 @@
         private TextBox txtbDeporte;
         private Button btnRefrescar;
         private Button btnGenerarFactura;
+        private Label label5;
+        private RichTextBox rtbDescripcion;
     }
 }
