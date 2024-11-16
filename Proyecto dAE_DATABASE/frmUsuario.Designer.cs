@@ -62,11 +62,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(437, 48);
+            label1.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(351, 27);
             label1.Name = "label1";
-            label1.Size = new Size(62, 15);
+            label1.Size = new Size(289, 25);
             label1.TabIndex = 0;
-            label1.Text = "USUARIOS";
+            label1.Text = "GESTIÓN DE USUARIOS";
             // 
             // btnAgregar
             // 

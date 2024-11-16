@@ -31,11 +31,15 @@
             menuStrip1 = new MenuStrip();
             mENUToolStripMenuItem = new ToolStripMenuItem();
             uSUARIOToolStripMenuItem = new ToolStripMenuItem();
+            eNCARGADOSDEBODEGAToolStripMenuItem = new ToolStripMenuItem();
+            uSUARIOSToolStripMenuItem = new ToolStripMenuItem();
             pRESTAMOSToolStripMenuItem = new ToolStripMenuItem();
             dEVOLUCIONESToolStripMenuItem = new ToolStripMenuItem();
             gESTIONDEIMPLEMENTOSToolStripMenuItem = new ToolStripMenuItem();
             iNGRESOMATERIALNUEVOToolStripMenuItem = new ToolStripMenuItem();
             sALIRToolStripMenuItem = new ToolStripMenuItem();
+            iMPLEMENTOSToolStripMenuItem = new ToolStripMenuItem();
+            dEPORTESToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,36 +63,52 @@
             // 
             // uSUARIOToolStripMenuItem
             // 
+            uSUARIOToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { eNCARGADOSDEBODEGAToolStripMenuItem, uSUARIOSToolStripMenuItem });
             uSUARIOToolStripMenuItem.Name = "uSUARIOToolStripMenuItem";
-            uSUARIOToolStripMenuItem.Size = new Size(221, 22);
-            uSUARIOToolStripMenuItem.Text = "USUARIO";
+            uSUARIOToolStripMenuItem.Size = new Size(226, 22);
+            uSUARIOToolStripMenuItem.Text = "GESTIÓN DE USUARIOS";
             uSUARIOToolStripMenuItem.Click += uSUARIOToolStripMenuItem_Click;
+            // 
+            // eNCARGADOSDEBODEGAToolStripMenuItem
+            // 
+            eNCARGADOSDEBODEGAToolStripMenuItem.Name = "eNCARGADOSDEBODEGAToolStripMenuItem";
+            eNCARGADOSDEBODEGAToolStripMenuItem.Size = new Size(217, 22);
+            eNCARGADOSDEBODEGAToolStripMenuItem.Text = "ENCARGADOS DE BODEGA";
+            eNCARGADOSDEBODEGAToolStripMenuItem.Click += eNCARGADOSDEBODEGAToolStripMenuItem_Click;
+            // 
+            // uSUARIOSToolStripMenuItem
+            // 
+            uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
+            uSUARIOSToolStripMenuItem.Size = new Size(217, 22);
+            uSUARIOSToolStripMenuItem.Text = "USUARIOS";
+            uSUARIOSToolStripMenuItem.Click += uSUARIOSToolStripMenuItem_Click;
             // 
             // pRESTAMOSToolStripMenuItem
             // 
             pRESTAMOSToolStripMenuItem.Name = "pRESTAMOSToolStripMenuItem";
-            pRESTAMOSToolStripMenuItem.Size = new Size(221, 22);
-            pRESTAMOSToolStripMenuItem.Text = "PRESTAMOS";
+            pRESTAMOSToolStripMenuItem.Size = new Size(226, 22);
+            pRESTAMOSToolStripMenuItem.Text = "GESTIÓN DE PRESTAMOS";
             pRESTAMOSToolStripMenuItem.Click += pRESTAMOSToolStripMenuItem_Click;
             // 
             // dEVOLUCIONESToolStripMenuItem
             // 
             dEVOLUCIONESToolStripMenuItem.Name = "dEVOLUCIONESToolStripMenuItem";
-            dEVOLUCIONESToolStripMenuItem.Size = new Size(221, 22);
-            dEVOLUCIONESToolStripMenuItem.Text = "DEVOLUCIONES";
+            dEVOLUCIONESToolStripMenuItem.Size = new Size(226, 22);
+            dEVOLUCIONESToolStripMenuItem.Text = "GESTIÓN DE DEVOLUCIONES";
             dEVOLUCIONESToolStripMenuItem.Click += dEVOLUCIONESToolStripMenuItem_Click;
             // 
             // gESTIONDEIMPLEMENTOSToolStripMenuItem
             // 
+            gESTIONDEIMPLEMENTOSToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iMPLEMENTOSToolStripMenuItem, dEPORTESToolStripMenuItem });
             gESTIONDEIMPLEMENTOSToolStripMenuItem.Name = "gESTIONDEIMPLEMENTOSToolStripMenuItem";
-            gESTIONDEIMPLEMENTOSToolStripMenuItem.Size = new Size(221, 22);
+            gESTIONDEIMPLEMENTOSToolStripMenuItem.Size = new Size(226, 22);
             gESTIONDEIMPLEMENTOSToolStripMenuItem.Text = "GESTION DE IMPLEMENTOS";
             gESTIONDEIMPLEMENTOSToolStripMenuItem.Click += gESTIONDEIMPLEMENTOSToolStripMenuItem_Click;
             // 
             // iNGRESOMATERIALNUEVOToolStripMenuItem
             // 
             iNGRESOMATERIALNUEVOToolStripMenuItem.Name = "iNGRESOMATERIALNUEVOToolStripMenuItem";
-            iNGRESOMATERIALNUEVOToolStripMenuItem.Size = new Size(221, 22);
+            iNGRESOMATERIALNUEVOToolStripMenuItem.Size = new Size(226, 22);
             iNGRESOMATERIALNUEVOToolStripMenuItem.Text = "INGRESO MATERIAL NUEVO";
             iNGRESOMATERIALNUEVOToolStripMenuItem.Click += iNGRESOMATERIALNUEVOToolStripMenuItem_Click;
             // 
@@ -97,6 +117,18 @@
             sALIRToolStripMenuItem.Name = "sALIRToolStripMenuItem";
             sALIRToolStripMenuItem.Size = new Size(49, 20);
             sALIRToolStripMenuItem.Text = "SALIR";
+            // 
+            // iMPLEMENTOSToolStripMenuItem
+            // 
+            iMPLEMENTOSToolStripMenuItem.Name = "iMPLEMENTOSToolStripMenuItem";
+            iMPLEMENTOSToolStripMenuItem.Size = new Size(180, 22);
+            iMPLEMENTOSToolStripMenuItem.Text = "IMPLEMENTOS";
+            // 
+            // dEPORTESToolStripMenuItem
+            // 
+            dEPORTESToolStripMenuItem.Name = "dEPORTESToolStripMenuItem";
+            dEPORTESToolStripMenuItem.Size = new Size(180, 22);
+            dEPORTESToolStripMenuItem.Text = "DEPORTES";
             // 
             // Principal
             // 
@@ -123,5 +155,9 @@
         private ToolStripMenuItem gESTIONDEIMPLEMENTOSToolStripMenuItem;
         private ToolStripMenuItem iNGRESOMATERIALNUEVOToolStripMenuItem;
         private ToolStripMenuItem sALIRToolStripMenuItem;
+        private ToolStripMenuItem eNCARGADOSDEBODEGAToolStripMenuItem;
+        private ToolStripMenuItem uSUARIOSToolStripMenuItem;
+        private ToolStripMenuItem iMPLEMENTOSToolStripMenuItem;
+        private ToolStripMenuItem dEPORTESToolStripMenuItem;
     }
 }

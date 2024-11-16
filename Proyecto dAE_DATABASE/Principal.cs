@@ -30,17 +30,7 @@ namespace Proyecto_dAE_DATABASE
 
         private void uSUARIOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.usuario.IdRol == 3)
-            {
-                frmUsuario frmUs = new frmUsuario();
-                frmUs.MdiParent = this;
-                frmUs.Show();
 
-            }
-            else
-            {
-                MessageBox.Show("No tienes permisos");
-            }
         }
 
         private void dEVOLUCIONESToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +83,41 @@ namespace Proyecto_dAE_DATABASE
             {
                 MessageBox.Show("No tienes permisos");
             }
+        }
+
+        private void uSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                frmUsuario frmUs = new frmUsuario();
+                frmUs.MdiParent = this;
+                frmUs.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos");
+            }
+        }
+
+        private void eNCARGADOSDEBODEGAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                EncargadoBodega frmUs = new EncargadoBodega();
+                frmUs.MdiParent = this;
+                frmUs.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos");
+            }
+        }
+
+        private void rOLESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
