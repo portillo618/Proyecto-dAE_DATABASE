@@ -22,4 +22,6 @@ public partial class Implemento
     public virtual ICollection<DetallePrestamo> DetallePrestamos { get; set; } = new List<DetallePrestamo>();
 
     public virtual Deporte IdDeporteNavigation { get; set; } = null!;
+
+    public virtual ICollection<IngresoMaterial> IngresoMaterials { get; set; } = new List<IngresoMaterial>();
 }

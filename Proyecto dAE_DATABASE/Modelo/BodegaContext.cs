@@ -29,6 +29,8 @@ public partial class BodegaContext : DbContext
 
     public virtual DbSet<Implemento> Implementos { get; set; }
 
+    public virtual DbSet<IngresoMaterial> IngresoMaterials { get; set; }
+
     public virtual DbSet<Prestamo> Prestamos { get; set; }
 
     public virtual DbSet<Razone> Razones { get; set; }
@@ -39,13 +41,13 @@ public partial class BodegaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-3TNT44F\\SQLEXPRESS;Database=Bodega;Trusted_Connection=True;encrypt=false");
+        => optionsBuilder.UseSqlServer("server=DESKTOP-NFDMETJ\\SQLEXPRESS;Database=Bodega;Trusted_Connection=True;encrypt=False;Connection Timeout=60;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Carrera>(entity =>
         {
-            entity.HasKey(e => e.IdCarrera).HasName("PK__Carrera__7B19E79180026DB5");
+            entity.HasKey(e => e.IdCarrera).HasName("PK__Carrera__7B19E7913CA3F8C1");
 
             entity.ToTable("Carrera");
 
@@ -59,12 +61,12 @@ public partial class BodegaContext : DbContext
             entity.HasOne(d => d.IdEscuelaNavigation).WithMany(p => p.Carreras)
                 .HasForeignKey(d => d.IdEscuela)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Carrera__idEscue__4AB81AF0");
+                .HasConstraintName("FK__Carrera__idEscue__4D94879B");
         });
 
         modelBuilder.Entity<DeBaja>(entity =>
         {
-            entity.HasKey(e => e.IdDeBaja).HasName("PK__DeBaja__CDE025B041A114B6");
+            entity.HasKey(e => e.IdDeBaja).HasName("PK__DeBaja__CDE025B07CB3AC35");
 
             entity.ToTable("DeBaja");
 
@@ -82,22 +84,22 @@ public partial class BodegaContext : DbContext
             entity.HasOne(d => d.IdImplementoNavigation).WithMany(p => p.DeBajas)
                 .HasForeignKey(d => d.IdImplemento)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__DeBaja__idImplem__534D60F1");
+                .HasConstraintName("FK__DeBaja__idImplem__571DF1D5");
 
             entity.HasOne(d => d.IdRazonNavigation).WithMany(p => p.DeBajas)
                 .HasForeignKey(d => d.IdRazon)
                 .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK__DeBaja__idRazon__5441852A");
+                .HasConstraintName("FK__DeBaja__idRazon__5812160E");
 
             entity.HasOne(d => d.IdUsuarioResponsableNavigation).WithMany(p => p.DeBajas)
                 .HasForeignKey(d => d.IdUsuarioResponsable)
                 .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK__DeBaja__idUsuari__52593CB8");
+                .HasConstraintName("FK__DeBaja__idUsuari__5629CD9C");
         });
 
         modelBuilder.Entity<Deporte>(entity =>
         {
-            entity.HasKey(e => e.IdDeporte).HasName("PK__Deporte__51D36C59ACCDA74B");
+            entity.HasKey(e => e.IdDeporte).HasName("PK__Deporte__51D36C595022E942");
 
             entity.ToTable("Deporte");
 
@@ -110,7 +112,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<DetallePrestamo>(entity =>
         {
-            entity.HasKey(e => e.IdDetallePrestamo).HasName("PK__DetalleP__5D283E2EB394E8E0");
+            entity.HasKey(e => e.IdDetallePrestamo).HasName("PK__DetalleP__5D283E2EEAC103F4");
 
             entity.ToTable("DetallePrestamo");
 
@@ -129,16 +131,16 @@ public partial class BodegaContext : DbContext
             entity.HasOne(d => d.IdImplementoNavigation).WithMany(p => p.DetallePrestamos)
                 .HasForeignKey(d => d.IdImplemento)
                 .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK__DetallePr__idImp__5165187F");
+                .HasConstraintName("FK__DetallePr__idImp__5535A963");
 
             entity.HasOne(d => d.IdPrestamoNavigation).WithMany(p => p.DetallePrestamos)
                 .HasForeignKey(d => d.IdPrestamo)
-                .HasConstraintName("FK__DetallePr__idPre__5070F446");
+                .HasConstraintName("FK__DetallePr__idPre__5441852A");
         });
 
         modelBuilder.Entity<EncargadoBodega>(entity =>
         {
-            entity.HasKey(e => e.IdEncargado).HasName("PK__Encargad__579D6A012803B27F");
+            entity.HasKey(e => e.IdEncargado).HasName("PK__Encargad__579D6A0192F4F7D8");
 
             entity.ToTable("EncargadoBodega");
 
@@ -151,7 +153,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Escuela>(entity =>
         {
-            entity.HasKey(e => e.IdEscuela).HasName("PK__Escuela__9F67B289EBEAB121");
+            entity.HasKey(e => e.IdEscuela).HasName("PK__Escuela__9F67B289605DA90C");
 
             entity.ToTable("Escuela");
 
@@ -164,7 +166,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Implemento>(entity =>
         {
-            entity.HasKey(e => e.IdImplemento).HasName("PK__Implemen__7C6043642E9376E9");
+            entity.HasKey(e => e.IdImplemento).HasName("PK__Implemen__7C604364B4738130");
 
             entity.ToTable("Implemento");
 
@@ -182,12 +184,35 @@ public partial class BodegaContext : DbContext
 
             entity.HasOne(d => d.IdDeporteNavigation).WithMany(p => p.Implementos)
                 .HasForeignKey(d => d.IdDeporte)
-                .HasConstraintName("FK__Implement__idDep__4F7CD00D");
+                .HasConstraintName("FK__Implement__idDep__52593CB8");
+        });
+
+        modelBuilder.Entity<IngresoMaterial>(entity =>
+        {
+            entity.HasKey(e => e.NumFactura).HasName("PK__IngresoM__C989668BF7744914");
+
+            entity.ToTable("IngresoMaterial");
+
+            entity.Property(e => e.NumFactura)
+                .ValueGeneratedNever()
+                .HasColumnName("numFactura");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.Descripcion)
+                .HasColumnType("text")
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Fecha)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnName("fecha");
+            entity.Property(e => e.IdImplemento).HasColumnName("idImplemento");
+
+            entity.HasOne(d => d.IdImplementoNavigation).WithMany(p => p.IngresoMaterials)
+                .HasForeignKey(d => d.IdImplemento)
+                .HasConstraintName("FK__IngresoMa__idImp__534D60F1");
         });
 
         modelBuilder.Entity<Prestamo>(entity =>
         {
-            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__A4876C1374F35B9E");
+            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__A4876C13279E56EC");
 
             entity.ToTable("Prestamo");
 
@@ -200,16 +225,16 @@ public partial class BodegaContext : DbContext
             entity.HasOne(d => d.IdEncargadoPrestamoNavigation).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdEncargadoPrestamo)
                 .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK__Prestamo__idEnca__4E88ABD4");
+                .HasConstraintName("FK__Prestamo__idEnca__5165187F");
 
             entity.HasOne(d => d.IdReceptorNavigation).WithMany(p => p.Prestamos)
                 .HasForeignKey(d => d.IdReceptor)
-                .HasConstraintName("FK__Prestamo__idRece__4D94879B");
+                .HasConstraintName("FK__Prestamo__idRece__5070F446");
         });
 
         modelBuilder.Entity<Razone>(entity =>
         {
-            entity.HasKey(e => e.IdRazon).HasName("PK__Razones__690E7329C4869A91");
+            entity.HasKey(e => e.IdRazon).HasName("PK__Razones__690E7329605FF6BA");
 
             entity.Property(e => e.IdRazon).HasColumnName("idRazon");
             entity.Property(e => e.NombreRazon)
@@ -220,7 +245,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.IdRol).HasName("PK__Roles__3C872F7616C3BCD8");
+            entity.HasKey(e => e.IdRol).HasName("PK__Roles__3C872F76E731EF58");
 
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.NombreRol)
@@ -231,7 +256,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A658667E79");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A6B1DC7E23");
 
             entity.ToTable("Usuario");
 
@@ -255,12 +280,12 @@ public partial class BodegaContext : DbContext
 
             entity.HasOne(d => d.IdCarreraNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdCarrera)
-                .HasConstraintName("FK__Usuario__idCarre__4BAC3F29");
+                .HasConstraintName("FK__Usuario__idCarre__4E88ABD4");
 
             entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.IdRol)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Usuario__idRol__4CA06362");
+                .HasConstraintName("FK__Usuario__idRol__4F7CD00D");
         });
 
         OnModelCreatingPartial(modelBuilder);
