@@ -300,7 +300,7 @@ namespace Prestaform
                     {
                         detalle.CantidadPrestada = (int)numCantidad.Value;
                         detalle.Especificacion = txtbDescripcion.Text;
-                        detalle.Estado = cmbEstado.SelectedItem.ToString();
+                        //detalle.Estado = cmbEstado.SelectedItem.ToString();
 
                         var implementoSeleccionado = cbTipoImplemento.SelectedItem?.ToString();
                         if (implementoSeleccionado != null)
@@ -384,7 +384,7 @@ namespace Prestaform
 
                         cmbDeporte.Text = detalle.IdImplementoNavigation?.IdDeporteNavigation?.NombreDeporte ?? string.Empty;
                         txtbDescripcion.Text = detalle.Especificacion ?? "No hay especificación disponible.";
-                        cmbEstado.SelectedItem = detalle.Estado;
+                        //cmbEstado.SelectedItem = detalle.Estado;
 
                         rellenarCamposUsuario();
                     }

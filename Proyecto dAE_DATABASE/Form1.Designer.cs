@@ -56,8 +56,6 @@
             dtPrestamo = new DateTimePicker();
             dtDevolucion = new DateTimePicker();
             cmbDeporte = new TextBox();
-            label10 = new Label();
-            cmbEstado = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)DataGridPrestamos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCantidad).BeginInit();
             SuspendLayout();
@@ -320,32 +318,11 @@
             cmbDeporte.Size = new Size(133, 23);
             cmbDeporte.TabIndex = 30;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(535, 411);
-            label10.Name = "label10";
-            label10.Size = new Size(42, 15);
-            label10.TabIndex = 31;
-            label10.Text = "Estado";
-            // 
-            // cmbEstado
-            // 
-            cmbEstado.FormattingEnabled = true;
-            cmbEstado.Items.AddRange(new object[] { "Devuelto", "Pendiente" });
-            cmbEstado.Location = new Point(578, 408);
-            cmbEstado.Margin = new Padding(3, 2, 3, 2);
-            cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(133, 23);
-            cmbEstado.TabIndex = 32;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(996, 710);
-            Controls.Add(cmbEstado);
-            Controls.Add(label10);
             Controls.Add(cmbDeporte);
             Controls.Add(dtDevolucion);
             Controls.Add(dtPrestamo);
@@ -413,7 +390,5 @@
         private DateTimePicker dtPrestamo;
         private DateTimePicker dtDevolucion;
         private TextBox cmbDeporte;
-        private Label label10;
-        private ComboBox cmbEstado;
     }
 }

@@ -67,11 +67,11 @@ namespace Proyecto_dAE_DATABASE
 
         private void gESTIONDEIMPLEMENTOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
             if (this.usuario.IdRol == 2 || this.usuario.IdRol == 3)
             {
                 FormImplementos frmdes = new FormImplementos();
-               frmdes.MdiParent = this;
+                frmdes.MdiParent = this;
                 frmdes.Show();
             }
             else
@@ -80,6 +80,20 @@ namespace Proyecto_dAE_DATABASE
             }
         }
 
+        private void iNGRESOMATERIALNUEVOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                IngresoMaterialNuevo frmde = new IngresoMaterialNuevo();
+                frmde.MdiParent = this;
+                frmde.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos");
+            }
+        }
     }
 }
 
