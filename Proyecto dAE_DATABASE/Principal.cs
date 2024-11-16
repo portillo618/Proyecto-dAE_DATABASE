@@ -1,5 +1,6 @@
 ﻿using Prestaform;
 using Proyecto_dAE_DATABASE.Modelo;
+using proyectoDAE;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,6 +63,23 @@ namespace Proyecto_dAE_DATABASE
             Form1 frmde = new Form1();
             frmde.MdiParent = this;
             frmde.Show();
-    }
+        }
+
+        private void gESTIONDEIMPLEMENTOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            if (this.usuario.IdRol == 2 || this.usuario.IdRol == 3)
+            {
+                FormImplementos frmdes = new FormImplementos();
+               frmdes.MdiParent = this;
+                frmdes.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
+

@@ -1,6 +1,6 @@
 namespace proyectoDAE
 {
-    public partial class Form1 : Form
+    public partial class FormImplementos : Form
     {
         private string[] nombresImplementos = new string[100];
         private string[] tiposImplementos = new string[100];
@@ -8,13 +8,13 @@ namespace proyectoDAE
         private string[] descripcionesImplementos = new string[100];
         private int contadorImplementos = 0;
 
-        public Form1()
+        public FormImplementos()
         {
             InitializeComponent();
-            this.Load += new EventHandler(Form1_Load);
+            this.Load += new EventHandler(FormImplementos_Load);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormImplementos_Load(object sender, EventArgs e)
         {
             // Llenar el ComboBox con los deportes
             cmbbox.Items.Add("Fútbol");

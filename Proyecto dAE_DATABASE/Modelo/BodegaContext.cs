@@ -39,13 +39,13 @@ public partial class BodegaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-NFDMETJ\\SQLEXPRESS;Database=bodega;Trusted_Connection=True;encrypt=false");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-3TNT44F\\SQLEXPRESS;Database=Bodega;Trusted_Connection=True;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Carrera>(entity =>
         {
-            entity.HasKey(e => e.IdCarrera).HasName("PK__Carrera__7B19E791E28ACE0E");
+            entity.HasKey(e => e.IdCarrera).HasName("PK__Carrera__7B19E79180026DB5");
 
             entity.ToTable("Carrera");
 
@@ -64,7 +64,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<DeBaja>(entity =>
         {
-            entity.HasKey(e => e.IdDeBaja).HasName("PK__DeBaja__CDE025B0C33A12B9");
+            entity.HasKey(e => e.IdDeBaja).HasName("PK__DeBaja__CDE025B041A114B6");
 
             entity.ToTable("DeBaja");
 
@@ -97,7 +97,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Deporte>(entity =>
         {
-            entity.HasKey(e => e.IdDeporte).HasName("PK__Deporte__51D36C5939E7FB80");
+            entity.HasKey(e => e.IdDeporte).HasName("PK__Deporte__51D36C59ACCDA74B");
 
             entity.ToTable("Deporte");
 
@@ -110,7 +110,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<DetallePrestamo>(entity =>
         {
-            entity.HasKey(e => e.IdDetallePrestamo).HasName("PK__DetalleP__5D283E2E9799A2AD");
+            entity.HasKey(e => e.IdDetallePrestamo).HasName("PK__DetalleP__5D283E2EB394E8E0");
 
             entity.ToTable("DetallePrestamo");
 
@@ -138,7 +138,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<EncargadoBodega>(entity =>
         {
-            entity.HasKey(e => e.IdEncargado).HasName("PK__Encargad__579D6A01E7F1CA30");
+            entity.HasKey(e => e.IdEncargado).HasName("PK__Encargad__579D6A012803B27F");
 
             entity.ToTable("EncargadoBodega");
 
@@ -151,7 +151,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Escuela>(entity =>
         {
-            entity.HasKey(e => e.IdEscuela).HasName("PK__Escuela__9F67B2898E6FD95A");
+            entity.HasKey(e => e.IdEscuela).HasName("PK__Escuela__9F67B289EBEAB121");
 
             entity.ToTable("Escuela");
 
@@ -164,7 +164,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Implemento>(entity =>
         {
-            entity.HasKey(e => e.IdImplemento).HasName("PK__Implemen__7C604364857228B2");
+            entity.HasKey(e => e.IdImplemento).HasName("PK__Implemen__7C6043642E9376E9");
 
             entity.ToTable("Implemento");
 
@@ -187,7 +187,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Prestamo>(entity =>
         {
-            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__A4876C1365AAC6A7");
+            entity.HasKey(e => e.IdPrestamo).HasName("PK__Prestamo__A4876C1374F35B9E");
 
             entity.ToTable("Prestamo");
 
@@ -209,7 +209,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Razone>(entity =>
         {
-            entity.HasKey(e => e.IdRazon).HasName("PK__Razones__690E7329013AA1C1");
+            entity.HasKey(e => e.IdRazon).HasName("PK__Razones__690E7329C4869A91");
 
             entity.Property(e => e.IdRazon).HasColumnName("idRazon");
             entity.Property(e => e.NombreRazon)
@@ -220,7 +220,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.IdRol).HasName("PK__Roles__3C872F76E0FDB588");
+            entity.HasKey(e => e.IdRol).HasName("PK__Roles__3C872F7616C3BCD8");
 
             entity.Property(e => e.IdRol).HasColumnName("idRol");
             entity.Property(e => e.NombreRol)
@@ -231,7 +231,7 @@ public partial class BodegaContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A68212C392");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A658667E79");
 
             entity.ToTable("Usuario");
 

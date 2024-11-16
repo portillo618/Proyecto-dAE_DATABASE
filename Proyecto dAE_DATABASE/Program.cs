@@ -1,3 +1,5 @@
+using proyectoDAE;
+
 namespace Proyecto_dAE_DATABASE
 {
     internal static class Program

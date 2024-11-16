@@ -1,6 +1,6 @@
 ﻿namespace proyectoDAE
 {
-    partial class Form1
+    partial class FormImplementos
     {
         /// <summary>
         ///  Required designer variable.
