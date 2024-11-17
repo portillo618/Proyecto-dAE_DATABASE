@@ -50,7 +50,7 @@
             btnRefrescar.TabIndex = 21;
             btnRefrescar.Text = "Refrescar";
             btnRefrescar.UseVisualStyleBackColor = true;
-            btnRefrescar.Click += this.btnRefrescar_Click;
+            //btnRefrescar.Click += this.btnRefrescar_Click;
             // 
             // btnBuscar
             // 

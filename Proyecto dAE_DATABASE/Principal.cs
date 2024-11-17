@@ -104,7 +104,7 @@ namespace Proyecto_dAE_DATABASE
         {
             if (this.usuario.IdRol == 3)
             {
-                EncargadoBodega frmUs = new EncargadoBodega();
+                EncargadosBodega frmUs = new EncargadosBodega();
                 frmUs.MdiParent = this;
                 frmUs.Show();
 

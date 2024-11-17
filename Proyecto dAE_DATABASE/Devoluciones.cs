@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto_dAE_DATABASE.Modelo;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,34 +19,51 @@ namespace Proyecto_dAE_DATABASE
         private void Devoluciones_Load(object sender, EventArgs e)
         {
             CargarPrestamosPendientes();
+            CargarEstados(); // Inicializar ComboBox con los estados permitidos
         }
 
         private void CargarPrestamosPendientes()
         {
-            var datosPrestamos = contexto.DetallePrestamos.Include(d => d.IdPrestamoNavigation.IdReceptorNavigation) 
-                                                            .Include(d => d.IdImplementoNavigation).Select(d => new
-        {
-            IdDetallePrestamo = d.IdDetallePrestamo,
-            Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,Articulo = d.IdImplementoNavigation.Tipo,
-            FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,Estado = d.Estado,CantidadPrestada = d.CantidadPrestada}).ToList();
-                       
+            var datosPrestamos = contexto.DetallePrestamos.Include(d => d.IdPrestamoNavigation.IdReceptorNavigation)
+                                                          .Include(d => d.IdImplementoNavigation)
+                                                          .Select(d => new
+                                                          {
+                                                              IdDetallePrestamo = d.IdDetallePrestamo,
+                                                              Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,
+                                                              Articulo = d.IdImplementoNavigation.Tipo,
+                                                              FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
+                                                              Estado = d.Estado,
+                                                              CantidadPrestada = d.CantidadPrestada
+                                                          }).ToList();
+
             dgvPrestamos.DataSource = datosPrestamos;
+        }
+
+        private void CargarEstados()
+        {
+            // Lista de estados permitidos
+            var estados = new List<string> { "Pendiente", "Devuelto", "Dañado", "Perdido" };
+
+            // Llenar el ComboBox
+            cmbEstado.DataSource = estados;
+            cmbEstado.SelectedIndex = -1; // Dejar sin selección inicial
         }
 
         private void dgvPrestamos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            if (e.RowIndex >= 0) 
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgvPrestamos.Rows[e.RowIndex];
 
                 txtIDUsuario.Text = selectedRow.Cells["Usuario"].Value.ToString();
                 txtNombreReceptor.Text = selectedRow.Cells["Articulo"].Value.ToString();
-                txtCantidad.Text = selectedRow.Cells["CantidadPrestada"].Value.ToString(); 
-                txtEstado.Text = selectedRow.Cells["Estado"].Value.ToString();
+                txtCantidad.Text = selectedRow.Cells["CantidadPrestada"].Value.ToString();
+
+                // Establecer el estado en el ComboBox
+                string estadoActual = selectedRow.Cells["Estado"].Value.ToString();
+                cmbEstado.SelectedItem = estadoActual;
             }
         }
-
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -62,9 +80,9 @@ namespace Proyecto_dAE_DATABASE
                     Articulo = d.IdImplementoNavigation.Tipo,
                     FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
                     Estado = d.Estado,
-                    CantidadPrestada = d.CantidadPrestada}).ToList();
+                    CantidadPrestada = d.CantidadPrestada
+                }).ToList();
 
-            
             dgvPrestamos.DataSource = resultadosBusqueda;
 
             if (resultadosBusqueda.Count == 0)
@@ -84,14 +102,15 @@ namespace Proyecto_dAE_DATABASE
 
                 if (detallePrestamo != null)
                 {
-                    // Obtener el estado del TextBox
-                    string nuevoEstado = txtEstado.Text.Trim(); // Obtener el texto y eliminar espacios
+                    // Obtener el estado del ComboBox
+                    string nuevoEstado = cmbEstado.SelectedItem?.ToString();
 
                     if (string.IsNullOrEmpty(nuevoEstado)) // Verificar que no esté vacío
                     {
-                        MessageBox.Show("Por favor, ingrese un estado válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Por favor, seleccione un estado válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+
                     detallePrestamo.Estado = nuevoEstado;
                     contexto.SaveChanges();
 
