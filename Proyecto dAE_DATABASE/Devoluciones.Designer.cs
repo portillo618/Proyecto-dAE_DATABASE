@@ -40,12 +40,14 @@
             label2 = new Label();
             label3 = new Label();
             cmbEstado = new ComboBox();
+            txtUsuarioDevolucion = new TextBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
             SuspendLayout();
             // 
             // txtIDUsuario
             // 
-            txtIDUsuario.Location = new Point(12, 120);
+            txtIDUsuario.Location = new Point(108, 119);
             txtIDUsuario.Name = "txtIDUsuario";
             txtIDUsuario.Size = new Size(135, 27);
             txtIDUsuario.TabIndex = 0;
@@ -53,7 +55,7 @@
             // txtNombreReceptor
             // 
             txtNombreReceptor.Enabled = false;
-            txtNombreReceptor.Location = new Point(179, 120);
+            txtNombreReceptor.Location = new Point(319, 119);
             txtNombreReceptor.Name = "txtNombreReceptor";
             txtNombreReceptor.Size = new Size(201, 27);
             txtNombreReceptor.TabIndex = 1;
@@ -61,7 +63,7 @@
             // lblcarne
             // 
             lblcarne.AutoSize = true;
-            lblcarne.Location = new Point(12, 150);
+            lblcarne.Location = new Point(108, 149);
             lblcarne.Name = "lblcarne";
             lblcarne.Size = new Size(71, 20);
             lblcarne.TabIndex = 3;
@@ -70,7 +72,7 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(179, 150);
+            lblNombre.Location = new Point(319, 150);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(99, 20);
             lblNombre.TabIndex = 4;
@@ -80,29 +82,27 @@
             // 
             dgvPrestamos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPrestamos.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dgvPrestamos.Location = new Point(10, 288);
+            dgvPrestamos.Location = new Point(137, 409);
             dgvPrestamos.Name = "dgvPrestamos";
             dgvPrestamos.RowHeadersWidth = 51;
             dgvPrestamos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPrestamos.Size = new Size(802, 249);
+            dgvPrestamos.Size = new Size(925, 231);
             dgvPrestamos.TabIndex = 5;
-            dgvPrestamos.CellContentClick += dgvPrestamos_CellContentClick;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(254, 222);
+            btnBuscar.Location = new Point(837, 290);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(226, 29);
+            btnBuscar.Size = new Size(225, 87);
             btnBuscar.TabIndex = 6;
             btnBuscar.Text = "BUSCAR PRESTAMO";
             btnBuscar.UseVisualStyleBackColor = true;
-            btnBuscar.Click += btnBuscar_Click;
             // 
             // btnConfirmarDev
             // 
-            btnConfirmarDev.Location = new Point(10, 222);
+            btnConfirmarDev.Location = new Point(137, 290);
             btnConfirmarDev.Name = "btnConfirmarDev";
-            btnConfirmarDev.Size = new Size(226, 29);
+            btnConfirmarDev.Size = new Size(224, 87);
             btnConfirmarDev.TabIndex = 7;
             btnConfirmarDev.Text = "MODIFICAR ESTADO";
             btnConfirmarDev.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(431, 150);
+            label1.Location = new Point(577, 149);
             label1.Name = "label1";
             label1.Size = new Size(83, 20);
             label1.TabIndex = 8;
@@ -120,7 +120,7 @@
             // txtCantidad
             // 
             txtCantidad.Enabled = false;
-            txtCantidad.Location = new Point(431, 120);
+            txtCantidad.Location = new Point(577, 119);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(144, 27);
             txtCantidad.TabIndex = 9;
@@ -128,7 +128,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(611, 151);
+            label2.Location = new Point(771, 150);
             label2.Name = "label2";
             label2.Size = new Size(64, 20);
             label2.TabIndex = 11;
@@ -138,7 +138,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Rockwell", 20F);
-            label3.Location = new Point(279, 36);
+            label3.Location = new Point(475, 41);
             label3.Name = "label3";
             label3.Size = new Size(282, 38);
             label3.TabIndex = 13;
@@ -148,17 +148,35 @@
             // 
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Items.AddRange(new object[] { "Pendiente", "Devuelto", "Dañado", "Perdido" });
-            cmbEstado.Location = new Point(611, 120);
+            cmbEstado.Location = new Point(771, 119);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(124, 28);
             cmbEstado.TabIndex = 14;
+            // 
+            // txtUsuarioDevolucion
+            // 
+            txtUsuarioDevolucion.Location = new Point(931, 120);
+            txtUsuarioDevolucion.Name = "txtUsuarioDevolucion";
+            txtUsuarioDevolucion.Size = new Size(159, 27);
+            txtUsuarioDevolucion.TabIndex = 15;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(931, 149);
+            label4.Name = "label4";
+            label4.Size = new Size(178, 20);
+            label4.TabIndex = 16;
+            label4.Text = "Encargado de devolución";
             // 
             // Devoluciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(826, 545);
+            ClientSize = new Size(1182, 694);
+            Controls.Add(label4);
+            Controls.Add(txtUsuarioDevolucion);
             Controls.Add(cmbEstado);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -194,5 +212,7 @@
         private Label label2;
         private Label label3;
         private ComboBox cmbEstado;
+        private TextBox txtUsuarioDevolucion;
+        private Label label4;
     }
 }

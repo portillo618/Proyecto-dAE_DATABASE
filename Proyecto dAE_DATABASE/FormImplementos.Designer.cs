@@ -50,17 +50,19 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 388);
+            dataGridView1.Location = new Point(10, 310);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(761, 256);
+            dataGridView1.Size = new Size(609, 205);
             dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(31, 291);
+            button1.Location = new Point(25, 233);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(122, 50);
+            button1.Size = new Size(98, 40);
             button1.TabIndex = 1;
             button1.Text = "Agregar";
             button1.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(260, 291);
+            btnEliminar.Location = new Point(208, 233);
+            btnEliminar.Margin = new Padding(2, 2, 2, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(118, 50);
+            btnEliminar.Size = new Size(94, 40);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -78,9 +81,10 @@
             // 
             // btnEditar
             // 
-            btnEditar.Location = new Point(466, 291);
+            btnEditar.Location = new Point(373, 233);
+            btnEditar.Margin = new Padding(2, 2, 2, 2);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(121, 50);
+            btnEditar.Size = new Size(97, 40);
             btnEditar.TabIndex = 3;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
@@ -89,23 +93,26 @@
             // cmbbox
             // 
             cmbbox.FormattingEnabled = true;
-            cmbbox.Location = new Point(591, 221);
+            cmbbox.Location = new Point(473, 177);
+            cmbbox.Margin = new Padding(2, 2, 2, 2);
             cmbbox.Name = "cmbbox";
-            cmbbox.Size = new Size(182, 33);
+            cmbbox.Size = new Size(146, 28);
             cmbbox.TabIndex = 4;
             // 
             // txtImplementos
             // 
-            txtImplementos.Location = new Point(21, 219);
+            txtImplementos.Location = new Point(17, 175);
+            txtImplementos.Margin = new Padding(2, 2, 2, 2);
             txtImplementos.Name = "txtImplementos";
-            txtImplementos.Size = new Size(202, 31);
+            txtImplementos.Size = new Size(162, 27);
             txtImplementos.TabIndex = 5;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(997, 252);
+            btnBuscar.Location = new Point(798, 202);
+            btnBuscar.Margin = new Padding(2, 2, 2, 2);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(120, 50);
+            btnBuscar.Size = new Size(96, 40);
             btnBuscar.TabIndex = 6;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -114,33 +121,37 @@
             // cmbBuscar
             // 
             cmbBuscar.FormattingEnabled = true;
-            cmbBuscar.Location = new Point(950, 322);
+            cmbBuscar.Location = new Point(760, 258);
+            cmbBuscar.Margin = new Padding(2, 2, 2, 2);
             cmbBuscar.Name = "cmbBuscar";
-            cmbBuscar.Size = new Size(182, 33);
+            cmbBuscar.Size = new Size(146, 28);
             cmbBuscar.TabIndex = 7;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(747, 324);
+            txtBuscar.Location = new Point(598, 259);
+            txtBuscar.Margin = new Padding(2, 2, 2, 2);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(191, 31);
+            txtBuscar.Size = new Size(154, 27);
             txtBuscar.TabIndex = 8;
             // 
             // lbAnio
             // 
             lbAnio.AutoSize = true;
-            lbAnio.Location = new Point(248, 178);
+            lbAnio.Location = new Point(198, 142);
+            lbAnio.Margin = new Padding(2, 0, 2, 0);
             lbAnio.Name = "lbAnio";
-            lbAnio.Size = new Size(45, 25);
+            lbAnio.Size = new Size(36, 20);
             lbAnio.TabIndex = 10;
             lbAnio.Text = "Año";
             // 
             // lbImplemento
             // 
             lbImplemento.AutoSize = true;
-            lbImplemento.Location = new Point(21, 178);
+            lbImplemento.Location = new Point(17, 142);
+            lbImplemento.Margin = new Padding(2, 0, 2, 0);
             lbImplemento.Name = "lbImplemento";
-            lbImplemento.Size = new Size(174, 25);
+            lbImplemento.Size = new Size(145, 20);
             lbImplemento.TabIndex = 11;
             lbImplemento.Text = "Tipo de Implemento";
             // 
@@ -148,49 +159,54 @@
             // 
             lbImplementos.AutoSize = true;
             lbImplementos.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbImplementos.Location = new Point(451, 30);
+            lbImplementos.Location = new Point(361, 24);
+            lbImplementos.Margin = new Padding(2, 0, 2, 0);
             lbImplementos.Name = "lbImplementos";
-            lbImplementos.Size = new Size(359, 38);
+            lbImplementos.Size = new Size(299, 32);
             lbImplementos.TabIndex = 12;
             lbImplementos.Text = "Gestion de Implementos";
             // 
             // lbDeporte
             // 
             lbDeporte.AutoSize = true;
-            lbDeporte.Location = new Point(591, 178);
+            lbDeporte.Location = new Point(473, 142);
+            lbDeporte.Margin = new Padding(2, 0, 2, 0);
             lbDeporte.Name = "lbDeporte";
-            lbDeporte.Size = new Size(179, 25);
+            lbDeporte.Size = new Size(149, 20);
             lbDeporte.TabIndex = 13;
             lbDeporte.Text = "Deporte Implemento";
             // 
             // txtAnio
             // 
-            txtAnio.Location = new Point(248, 221);
+            txtAnio.Location = new Point(198, 177);
+            txtAnio.Margin = new Padding(2, 2, 2, 2);
             txtAnio.Name = "txtAnio";
-            txtAnio.Size = new Size(111, 31);
+            txtAnio.Size = new Size(90, 27);
             txtAnio.TabIndex = 14;
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(382, 221);
+            txtDescripcion.Location = new Point(306, 177);
+            txtDescripcion.Margin = new Padding(2, 2, 2, 2);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(182, 31);
+            txtDescripcion.Size = new Size(146, 27);
             txtDescripcion.TabIndex = 15;
             // 
             // lbDescripcion
             // 
             lbDescripcion.AutoSize = true;
-            lbDescripcion.Location = new Point(382, 178);
+            lbDescripcion.Location = new Point(306, 142);
+            lbDescripcion.Margin = new Padding(2, 0, 2, 0);
             lbDescripcion.Name = "lbDescripcion";
-            lbDescripcion.Size = new Size(104, 25);
+            lbDescripcion.Size = new Size(87, 20);
             lbDescripcion.TabIndex = 16;
             lbDescripcion.Text = "Descripcion";
             // 
-            // Form1
+            // FormImplementos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1144, 656);
+            ClientSize = new Size(915, 525);
             Controls.Add(lbDescripcion);
             Controls.Add(txtDescripcion);
             Controls.Add(txtAnio);
@@ -207,8 +223,10 @@
             Controls.Add(btnEliminar);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
-            Name = "Form1";
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "FormImplementos";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

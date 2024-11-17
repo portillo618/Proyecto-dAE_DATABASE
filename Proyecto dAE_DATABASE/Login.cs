@@ -1,12 +1,6 @@
 ﻿using Proyecto_dAE_DATABASE.Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Proyecto_dAE_DATABASE
@@ -18,58 +12,55 @@ namespace Proyecto_dAE_DATABASE
             InitializeComponent();
         }
 
-        private void txtbUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtbContrasenia_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
                 BodegaContext contexto = new BodegaContext();
-                var usuario = contexto.Usuarios.Where(x => x.CarneBiblioteca == int.Parse(txtbUsuario.Text) &&
-                                                      x.Contrasenia.Equals(txtbContrasenia.Text)).ToArray();
-                if (usuario.Length > 0)
+                int carneBiblioteca;
+
+                // Verificar si el CarneBiblioteca es un número válido
+                if (int.TryParse(txtbUsuario.Text, out carneBiblioteca))
                 {
-                    Usuario us = new Usuario();
-                    us.IdUsuario = usuario[0].IdUsuario;
-                    us.NombreUsuario = usuario[0].NombreUsuario;
-                    us.IdRol = usuario[0].IdRol;
-                    Principal principal = new Principal(us);
-                    principal.Show();
-                    this.Hide();
+                    var usuario = contexto.Usuarios.Where(x => x.CarneBiblioteca == carneBiblioteca &&
+                                                              x.Contrasenia.Equals(txtbContrasenia.Text)).ToArray();
+                    if (usuario.Length > 0)
+                    {
+                        Usuario us = new Usuario
+                        {
+                            IdUsuario = usuario[0].IdUsuario,
+                            NombreUsuario = usuario[0].NombreUsuario,
+                            IdRol = usuario[0].IdRol
+                        };
+
+                        // Pasar el usuario logueado a la clase Principal
+                        Principal principal = new Principal(us);
+                        principal.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sus credenciales son erróneas");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Sus credenciales son erróneas");
+                    MessageBox.Show("El CarneBiblioteca debe ser un número válido.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al iniciar sesión");
+                MessageBox.Show("Error al iniciar sesión: " + ex.Message);
             }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            // Mostrar un mensaje de confirmación antes de salir (opcional)
             var result = MessageBox.Show("¿Está seguro de que desea salir?", "Confirmar Salida", MessageBoxButtons.YesNo);
-
             if (result == DialogResult.Yes)
             {
-                Application.Exit(); // Cierra la aplicación
+                Application.Exit();
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

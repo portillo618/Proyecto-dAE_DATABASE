@@ -345,6 +345,7 @@
             Controls.Add(btnBuscar);
             Name = "Form1";
             Text = "PRESTAMOS";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)DataGridPrestamos).EndInit();
             ((System.ComponentModel.ISupportInitialize)numCantidad).EndInit();
             ResumeLayout(false);

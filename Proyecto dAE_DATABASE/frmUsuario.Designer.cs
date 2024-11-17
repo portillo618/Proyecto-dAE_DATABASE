@@ -63,17 +63,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(351, 27);
+            label1.Location = new Point(401, 36);
             label1.Name = "label1";
-            label1.Size = new Size(289, 25);
+            label1.Size = new Size(372, 32);
             label1.TabIndex = 0;
             label1.Text = "GESTIÓN DE USUARIOS";
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(542, 275);
+            btnAgregar.Location = new Point(619, 367);
+            btnAgregar.Margin = new Padding(3, 4, 3, 4);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 23);
+            btnAgregar.Size = new Size(86, 31);
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "AGREGAR";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -81,9 +82,10 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(645, 275);
+            btnModificar.Location = new Point(737, 367);
+            btnModificar.Margin = new Padding(3, 4, 3, 4);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(85, 23);
+            btnModificar.Size = new Size(97, 31);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "MODIFICAR";
             btnModificar.UseVisualStyleBackColor = true;
@@ -91,9 +93,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(753, 275);
+            btnEliminar.Location = new Point(861, 367);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.Size = new Size(86, 31);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "ELIMINAR";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -102,59 +105,66 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(194, 128);
+            label2.Location = new Point(222, 171);
             label2.Name = "label2";
-            label2.Size = new Size(18, 15);
+            label2.Size = new Size(24, 20);
             label2.TabIndex = 4;
             label2.Text = "ID";
             // 
             // txtbNombre
             // 
-            txtbNombre.Location = new Point(300, 102);
+            txtbNombre.Location = new Point(343, 136);
+            txtbNombre.Margin = new Padding(3, 4, 3, 4);
             txtbNombre.MaxLength = 12;
             txtbNombre.Name = "txtbNombre";
-            txtbNombre.Size = new Size(100, 23);
+            txtbNombre.Size = new Size(114, 27);
             txtbNombre.TabIndex = 6;
             // 
             // txtbCarne
             // 
-            txtbCarne.Location = new Point(424, 102);
+            txtbCarne.Location = new Point(485, 136);
+            txtbCarne.Margin = new Padding(3, 4, 3, 4);
             txtbCarne.MaxLength = 4;
             txtbCarne.Name = "txtbCarne";
-            txtbCarne.Size = new Size(100, 23);
+            txtbCarne.Size = new Size(114, 27);
             txtbCarne.TabIndex = 7;
             // 
             // txtbTelefono
             // 
-            txtbTelefono.Location = new Point(502, 177);
+            txtbTelefono.Location = new Point(574, 236);
+            txtbTelefono.Margin = new Padding(3, 4, 3, 4);
             txtbTelefono.MaxLength = 8;
             txtbTelefono.Name = "txtbTelefono";
-            txtbTelefono.Size = new Size(100, 23);
+            txtbTelefono.Size = new Size(114, 27);
             txtbTelefono.TabIndex = 12;
             // 
             // txtbContrasenia
             // 
-            txtbContrasenia.Location = new Point(630, 177);
+            txtbContrasenia.Location = new Point(720, 236);
+            txtbContrasenia.Margin = new Padding(3, 4, 3, 4);
             txtbContrasenia.MaxLength = 8;
             txtbContrasenia.Name = "txtbContrasenia";
-            txtbContrasenia.Size = new Size(100, 23);
+            txtbContrasenia.Size = new Size(114, 27);
             txtbContrasenia.TabIndex = 13;
             // 
             // txtbId
             // 
-            txtbId.Location = new Point(164, 102);
+            txtbId.Location = new Point(187, 136);
+            txtbId.Margin = new Padding(3, 4, 3, 4);
             txtbId.Name = "txtbId";
             txtbId.ReadOnly = true;
-            txtbId.Size = new Size(100, 23);
+            txtbId.Size = new Size(114, 27);
             txtbId.TabIndex = 14;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 325);
+            dataGridView1.Location = new Point(14, 433);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(982, 251);
+            dataGridView1.Size = new Size(1122, 335);
             dataGridView1.TabIndex = 15;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.Click += dataGridView1_Click;
@@ -162,72 +172,72 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(314, 128);
+            label3.Location = new Point(359, 171);
             label3.Name = "label3";
-            label3.Size = new Size(56, 15);
+            label3.Size = new Size(70, 20);
             label3.TabIndex = 16;
             label3.Text = "NOMBRE";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(454, 128);
+            label4.Location = new Point(519, 171);
             label4.Name = "label4";
-            label4.Size = new Size(45, 15);
+            label4.Size = new Size(56, 20);
             label4.TabIndex = 17;
             label4.Text = "CARNÉ";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(596, 128);
+            label5.Location = new Point(681, 171);
             label5.Name = "label5";
-            label5.Size = new Size(58, 15);
+            label5.Size = new Size(73, 20);
             label5.TabIndex = 18;
             label5.Text = "CARRERA";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(792, 128);
+            label6.Location = new Point(905, 171);
             label6.Name = "label6";
-            label6.Size = new Size(55, 15);
+            label6.Size = new Size(69, 20);
             label6.TabIndex = 19;
             label6.Text = "ESCUELA";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(242, 203);
+            label7.Location = new Point(277, 271);
             label7.Name = "label7";
-            label7.Size = new Size(68, 15);
+            label7.Size = new Size(85, 20);
             label7.TabIndex = 20;
             label7.Text = "DIRECCION";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(397, 203);
+            label8.Location = new Point(454, 271);
             label8.Name = "label8";
-            label8.Size = new Size(29, 15);
+            label8.Size = new Size(36, 20);
             label8.TabIndex = 21;
             label8.Text = "ROL";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(517, 203);
+            label9.Location = new Point(591, 271);
             label9.Name = "label9";
-            label9.Size = new Size(64, 15);
+            label9.Size = new Size(80, 20);
             label9.TabIndex = 22;
             label9.Text = "TELEFONO";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(630, 203);
+            label10.Location = new Point(720, 271);
             label10.Name = "label10";
-            label10.Size = new Size(83, 15);
+            label10.Size = new Size(104, 20);
             label10.TabIndex = 23;
             label10.Text = "CONTRASEÑA";
             // 
@@ -235,47 +245,52 @@
             // 
             cmbbCarrera.FormattingEnabled = true;
             cmbbCarrera.Items.AddRange(new object[] { "" });
-            cmbbCarrera.Location = new Point(542, 102);
+            cmbbCarrera.Location = new Point(619, 136);
+            cmbbCarrera.Margin = new Padding(3, 4, 3, 4);
             cmbbCarrera.Name = "cmbbCarrera";
-            cmbbCarrera.Size = new Size(164, 23);
+            cmbbCarrera.Size = new Size(187, 28);
             cmbbCarrera.TabIndex = 24;
             // 
             // cmbbRol
             // 
             cmbbRol.FormattingEnabled = true;
-            cmbbRol.Location = new Point(351, 177);
+            cmbbRol.Location = new Point(401, 236);
+            cmbbRol.Margin = new Padding(3, 4, 3, 4);
             cmbbRol.Name = "cmbbRol";
-            cmbbRol.Size = new Size(121, 23);
+            cmbbRol.Size = new Size(138, 28);
             cmbbRol.TabIndex = 26;
             // 
             // txtbDireccion
             // 
-            txtbDireccion.Location = new Point(223, 177);
+            txtbDireccion.Location = new Point(255, 236);
+            txtbDireccion.Margin = new Padding(3, 4, 3, 4);
             txtbDireccion.Name = "txtbDireccion";
-            txtbDireccion.Size = new Size(100, 23);
+            txtbDireccion.Size = new Size(114, 27);
             txtbDireccion.TabIndex = 27;
             // 
             // txtbEscuela
             // 
-            txtbEscuela.Location = new Point(734, 102);
+            txtbEscuela.Location = new Point(839, 136);
+            txtbEscuela.Margin = new Padding(3, 4, 3, 4);
             txtbEscuela.Name = "txtbEscuela";
             txtbEscuela.ReadOnly = true;
-            txtbEscuela.Size = new Size(164, 23);
+            txtbEscuela.Size = new Size(187, 27);
             txtbEscuela.TabIndex = 28;
             // 
             // txtbBuscar
             // 
-            txtbBuscar.Location = new Point(195, 276);
+            txtbBuscar.Location = new Point(223, 368);
+            txtbBuscar.Margin = new Padding(3, 4, 3, 4);
             txtbBuscar.Name = "txtbBuscar";
-            txtbBuscar.Size = new Size(231, 23);
+            txtbBuscar.Size = new Size(263, 27);
             txtbBuscar.TabIndex = 29;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(195, 258);
+            label11.Location = new Point(223, 344);
             label11.Name = "label11";
-            label11.Size = new Size(42, 15);
+            label11.Size = new Size(52, 20);
             label11.TabIndex = 30;
             label11.Text = "Buscar";
             // 
@@ -283,16 +298,18 @@
             // 
             cmbbBuscar.FormattingEnabled = true;
             cmbbBuscar.Items.AddRange(new object[] { "ID", "NOMBRE", "CARNÉ", "CARRERA", "ESCUELA", "ROL", "TELÉFONO" });
-            cmbbBuscar.Location = new Point(68, 277);
+            cmbbBuscar.Location = new Point(78, 369);
+            cmbbBuscar.Margin = new Padding(3, 4, 3, 4);
             cmbbBuscar.Name = "cmbbBuscar";
-            cmbbBuscar.Size = new Size(121, 23);
+            cmbbBuscar.Size = new Size(138, 28);
             cmbbBuscar.TabIndex = 31;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(441, 276);
+            btnBuscar.Location = new Point(504, 368);
+            btnBuscar.Margin = new Padding(3, 4, 3, 4);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(75, 23);
+            btnBuscar.Size = new Size(86, 31);
             btnBuscar.TabIndex = 32;
             btnBuscar.Text = "BUSCAR";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -300,9 +317,10 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(68, 248);
+            btnLimpiar.Location = new Point(78, 331);
+            btnLimpiar.Margin = new Padding(3, 4, 3, 4);
             btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(75, 23);
+            btnLimpiar.Size = new Size(86, 31);
             btnLimpiar.TabIndex = 33;
             btnLimpiar.Text = "LIMPIAR";
             btnLimpiar.UseVisualStyleBackColor = true;
@@ -310,9 +328,9 @@
             // 
             // frmUsuario
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1007, 590);
+            ClientSize = new Size(1151, 787);
             Controls.Add(btnLimpiar);
             Controls.Add(btnBuscar);
             Controls.Add(cmbbBuscar);
@@ -341,8 +359,10 @@
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmUsuario";
             Text = "frmUsuario";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

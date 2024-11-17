@@ -17,6 +17,8 @@ public partial class DetallePrestamo
 
     public string Estado { get; set; } = null!;
 
+    public string? UsuarioDevolucion { get; set; }
+
     public virtual Implemento? IdImplementoNavigation { get; set; }
 
     public virtual Prestamo IdPrestamoNavigation { get; set; } = null!;

@@ -2,13 +2,7 @@
 using Proyecto_dAE_DATABASE.Modelo;
 using proyectoDAE;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Proyecto_dAE_DATABASE
@@ -20,31 +14,26 @@ namespace Proyecto_dAE_DATABASE
         {
             InitializeComponent();
             this.usuario = us;
-            this.IsMdiContainer = true; // Esta línea es crucial para evitar el error
+            this.IsMdiContainer = true;
         }
 
         private void mENUToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void uSUARIOToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            // Menu principal de la aplicación
         }
 
         private void dEVOLUCIONESToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.usuario.IdRol == 3)
             {
-                Devoluciones frmde = new Devoluciones();
+                
+                Devoluciones frmde = new Devoluciones(this.usuario.NombreUsuario);
                 frmde.MdiParent = this;
                 frmde.Show();
-
             }
             else
             {
-                MessageBox.Show("No tienes permisos");
+                MessageBox.Show("No tienes permisos para acceder a esta sección.");
             }
         }
 
@@ -57,7 +46,6 @@ namespace Proyecto_dAE_DATABASE
 
         private void gESTIONDEIMPLEMENTOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (this.usuario.IdRol == 2 || this.usuario.IdRol == 3)
             {
                 FormImplementos frmdes = new FormImplementos();
@@ -77,26 +65,24 @@ namespace Proyecto_dAE_DATABASE
                 IngresoMaterialNuevo frmde = new IngresoMaterialNuevo();
                 frmde.MdiParent = this;
                 frmde.Show();
-
             }
             else
             {
-                MessageBox.Show("No tienes permisos");
+                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.");
             }
         }
 
-        private void uSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uSUARIOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.usuario.IdRol == 3)
             {
                 frmUsuario frmUs = new frmUsuario();
                 frmUs.MdiParent = this;
                 frmUs.Show();
-
             }
             else
             {
-                MessageBox.Show("No tienes permisos");
+                MessageBox.Show("No tienes permisos para acceder a esta sección.");
             }
         }
 
@@ -107,18 +93,11 @@ namespace Proyecto_dAE_DATABASE
                 EncargadosBodega frmUs = new EncargadosBodega();
                 frmUs.MdiParent = this;
                 frmUs.Show();
-
             }
             else
             {
-                MessageBox.Show("No tienes permisos");
+                MessageBox.Show("No tienes permisos para acceder a esta sección.");
             }
-        }
-
-        private void rOLESToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
-

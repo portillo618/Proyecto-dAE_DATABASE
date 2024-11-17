@@ -61,7 +61,7 @@
             label2.Size = new Size(251, 31);
             label2.TabIndex = 1;
             label2.Text = "NUMERO DE CARNET";
-            label2.Click += label2_Click;
+           // label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -81,6 +81,7 @@
             btnLogin.Size = new Size(131, 51);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "LOGIN";
+            btnLogin.TextImageRelation = TextImageRelation.ImageAboveText;
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
             // 
@@ -102,7 +103,7 @@
             txtbUsuario.Name = "txtbUsuario";
             txtbUsuario.Size = new Size(228, 27);
             txtbUsuario.TabIndex = 5;
-            txtbUsuario.TextChanged += txtbUsuario_TextChanged;
+           // txtbUsuario.TextChanged += txtbUsuario_TextChanged;
             // 
             // txtbContrasenia
             // 
@@ -112,7 +113,7 @@
             txtbContrasenia.PasswordChar = '*';
             txtbContrasenia.Size = new Size(228, 27);
             txtbContrasenia.TabIndex = 6;
-            txtbContrasenia.TextChanged += txtbContrasenia_TextChanged;
+           // txtbContrasenia.TextChanged += txtbContrasenia_TextChanged;
             // 
             // label4
             // 
@@ -164,6 +165,7 @@
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ResumeLayout(false);
             PerformLayout();

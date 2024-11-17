@@ -10,85 +10,56 @@ namespace Proyecto_dAE_DATABASE
     public partial class Devoluciones : Form
     {
         private BodegaContext contexto = new BodegaContext();
+        private string usuarioLogueado;
 
-        public Devoluciones()
+        public Devoluciones(string usuario)
         {
             InitializeComponent();
+            usuarioLogueado = usuario;
         }
 
         private void Devoluciones_Load(object sender, EventArgs e)
         {
             CargarPrestamosPendientes();
-            CargarEstados(); // Inicializar ComboBox con los estados permitidos
+            CargarEstados();
+
+            // Mostrar el usuario logueado
+            txtUsuarioDevolucion.Text = usuarioLogueado;
+            txtUsuarioDevolucion.ReadOnly = true; // Evitar edición
         }
 
         private void CargarPrestamosPendientes()
         {
-            var datosPrestamos = contexto.DetallePrestamos.Include(d => d.IdPrestamoNavigation.IdReceptorNavigation)
-                                                          .Include(d => d.IdImplementoNavigation)
-                                                          .Select(d => new
-                                                          {
-                                                              IdDetallePrestamo = d.IdDetallePrestamo,
-                                                              Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,
-                                                              Articulo = d.IdImplementoNavigation.Tipo,
-                                                              FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
-                                                              Estado = d.Estado,
-                                                              CantidadPrestada = d.CantidadPrestada
-                                                          }).ToList();
+            var datosPrestamos = contexto.DetallePrestamos
+                                         .Include(d => d.IdPrestamoNavigation.IdReceptorNavigation)
+                                         .Include(d => d.IdImplementoNavigation)
+                                         .Select(d => new
+                                         {
+                                             IdDetallePrestamo = d.IdDetallePrestamo,
+                                             Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,
+                                             Articulo = d.IdImplementoNavigation.Tipo,
+                                             FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
+                                             Estado = d.Estado,
+                                             CantidadPrestada = d.CantidadPrestada,
+                                             UsuarioDevolucion = d.UsuarioDevolucion
+                                         }).ToList();
 
             dgvPrestamos.DataSource = datosPrestamos;
+
+            dgvPrestamos.Columns["IdDetallePrestamo"].HeaderText = "ID Detalle";
+            dgvPrestamos.Columns["Usuario"].HeaderText = "Usuario";
+            dgvPrestamos.Columns["Articulo"].HeaderText = "Artículo";
+            dgvPrestamos.Columns["FechaPrestamo"].HeaderText = "Fecha de Préstamo";
+            dgvPrestamos.Columns["Estado"].HeaderText = "Estado";
+            dgvPrestamos.Columns["CantidadPrestada"].HeaderText = "Cantidad Prestada";
+            dgvPrestamos.Columns["UsuarioDevolucion"].HeaderText = "Usuario Devolución";
         }
 
         private void CargarEstados()
         {
-            // Lista de estados permitidos
             var estados = new List<string> { "Pendiente", "Devuelto", "Dañado", "Perdido" };
-
-            // Llenar el ComboBox
             cmbEstado.DataSource = estados;
-            cmbEstado.SelectedIndex = -1; // Dejar sin selección inicial
-        }
-
-        private void dgvPrestamos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow selectedRow = dgvPrestamos.Rows[e.RowIndex];
-
-                txtIDUsuario.Text = selectedRow.Cells["Usuario"].Value.ToString();
-                txtNombreReceptor.Text = selectedRow.Cells["Articulo"].Value.ToString();
-                txtCantidad.Text = selectedRow.Cells["CantidadPrestada"].Value.ToString();
-
-                // Establecer el estado en el ComboBox
-                string estadoActual = selectedRow.Cells["Estado"].Value.ToString();
-                cmbEstado.SelectedItem = estadoActual;
-            }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            string usuarioBusqueda = txtIDUsuario.Text;
-
-            var resultadosBusqueda = contexto.DetallePrestamos
-                .Include(d => d.IdPrestamoNavigation.IdReceptorNavigation)
-                .Include(d => d.IdImplementoNavigation)
-                .Where(dp => dp.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario.Contains(usuarioBusqueda))
-                .Select(d => new
-                {
-                    IdDetallePrestamo = d.IdDetallePrestamo,
-                    Usuario = d.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,
-                    Articulo = d.IdImplementoNavigation.Tipo,
-                    FechaPrestamo = d.IdPrestamoNavigation.FechaPrestamo,
-                    Estado = d.Estado,
-                    CantidadPrestada = d.CantidadPrestada
-                }).ToList();
-
-            dgvPrestamos.DataSource = resultadosBusqueda;
-
-            if (resultadosBusqueda.Count == 0)
-            {
-                MessageBox.Show("No se encontraron préstamos para el usuario especificado.", "Filtro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            cmbEstado.SelectedIndex = -1;
         }
 
         private void btnConfirmarDev_Click(object sender, EventArgs e)
@@ -102,19 +73,19 @@ namespace Proyecto_dAE_DATABASE
 
                 if (detallePrestamo != null)
                 {
-                    // Obtener el estado del ComboBox
                     string nuevoEstado = cmbEstado.SelectedItem?.ToString();
-
-                    if (string.IsNullOrEmpty(nuevoEstado)) // Verificar que no esté vacío
+                    if (string.IsNullOrEmpty(nuevoEstado))
                     {
                         MessageBox.Show("Por favor, seleccione un estado válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     detallePrestamo.Estado = nuevoEstado;
+                    detallePrestamo.UsuarioDevolucion = usuarioLogueado;
+
                     contexto.SaveChanges();
 
-                    MessageBox.Show($"Estado actualizado a '{nuevoEstado}'.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Devolución registrada por '{usuarioLogueado}'.\nEstado actualizado a '{nuevoEstado}'.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     CargarPrestamosPendientes();
                 }

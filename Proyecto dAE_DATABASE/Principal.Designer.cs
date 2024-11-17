@@ -82,7 +82,7 @@
             uSUARIOSToolStripMenuItem.Name = "uSUARIOSToolStripMenuItem";
             uSUARIOSToolStripMenuItem.Size = new Size(275, 26);
             uSUARIOSToolStripMenuItem.Text = "USUARIOS";
-            uSUARIOSToolStripMenuItem.Click += uSUARIOSToolStripMenuItem_Click;
+           // uSUARIOSToolStripMenuItem.Click += uSUARIOSToolStripMenuItem_Click;
             // 
             // pRESTAMOSToolStripMenuItem
             // 

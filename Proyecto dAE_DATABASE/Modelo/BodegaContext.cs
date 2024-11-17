@@ -127,6 +127,9 @@ public partial class BodegaContext : DbContext
                 .HasColumnName("estado");
             entity.Property(e => e.IdImplemento).HasColumnName("idImplemento");
             entity.Property(e => e.IdPrestamo).HasColumnName("idPrestamo");
+            entity.Property(e => e.UsuarioDevolucion)
+                .HasMaxLength(20)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.IdImplementoNavigation).WithMany(p => p.DetallePrestamos)
                 .HasForeignKey(d => d.IdImplemento)
