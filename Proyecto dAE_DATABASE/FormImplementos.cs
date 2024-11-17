@@ -1,44 +1,74 @@
+using Proyecto_dAE_DATABASE.Modelo;
+using System;
+using System.Linq;
+using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
+
 namespace proyectoDAE
 {
     public partial class FormImplementos : Form
     {
-        private string[] nombresImplementos = new string[100];
-        private string[] tiposImplementos = new string[100];
-        private int[] aniosImplementos = new int[100];
-        private string[] descripcionesImplementos = new string[100];
-        private int contadorImplementos = 0;
+        private BodegaContext dbContext;
 
         public FormImplementos()
         {
             InitializeComponent();
             this.Load += new EventHandler(FormImplementos_Load);
+            dbContext = new BodegaContext();
         }
 
         private void FormImplementos_Load(object sender, EventArgs e)
         {
-            // Llenar el ComboBox con los deportes
+            if (dataGridView1.Columns.Count == 0)
+            {
+                dataGridView1.Columns.Add("Tipo", "Nombre del Implemento");
+                dataGridView1.Columns.Add("deporte", "Deporte");
+                dataGridView1.Columns.Add("anio", "Año");
+                dataGridView1.Columns.Add("descripcion", "Descripción");
+            }
+
             cmbbox.Items.Add("Fútbol");
             cmbbox.Items.Add("Baloncesto");
+            cmbbox.Items.Add("Natación");
+            cmbbox.Items.Add("Atletismo");
             cmbbox.Items.Add("Tenis");
             cmbbox.Items.Add("Voleibol");
             cmbbox.Items.Add("Cronómetro digital");
 
-            // Configurar columnas del DataGridView
-            dataGridView1.Columns.Add("nombreImplemento", "Nombre del Implemento");
-            dataGridView1.Columns.Add("deporte", "Deporte");
-            dataGridView1.Columns.Add("anio", "Año");
-            dataGridView1.Columns.Add("descripcion", "Descripción");
-
-            // Llenar el ComboBox de búsqueda
             cmbBuscar.Items.Add("Nombre del Implemento");
             cmbBuscar.Items.Add("Tipo de Deporte");
             cmbBuscar.Items.Add("Año");
             cmbBuscar.Items.Add("Descripción");
+
+            LoadImplementos();
+        }
+
+        private void LoadImplementos()
+        {
+            dataGridView1.Rows.Clear();
+
+            var implementos = dbContext.Implementos.Include(i => i.IdDeporteNavigation).ToList();
+
+            if (implementos != null && implementos.Any())
+            {
+                foreach (var implemento in implementos)
+                {
+                    string nombreDeporte = implemento.IdDeporteNavigation?.NombreDeporte ?? "Desconocido";
+                    string nombreImplemento = implemento.Tipo;
+                    string descripcion = implemento.Descripcion;
+                    int anio = implemento.Anio;
+
+                    dataGridView1.Rows.Add(nombreImplemento, nombreDeporte, anio, descripcion);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron implementos.");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Verificar que todos los campos estén llenos
             if (string.IsNullOrWhiteSpace(txtImplementos.Text) || cmbbox.SelectedItem == null ||
                 string.IsNullOrWhiteSpace(txtAnio.Text) || string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
@@ -46,10 +76,9 @@ namespace proyectoDAE
                 return;
             }
 
-            string nombreImplemento = txtImplementos.Text;
-            string deporte = cmbbox.SelectedItem.ToString();
+            string Tipo = txtImplementos.Text;
+            string tipoDeporte = cmbbox.SelectedItem.ToString();
 
-            // Validar que el año sea un número válido
             if (!int.TryParse(txtAnio.Text, out int anio) || anio <= 0)
             {
                 MessageBox.Show("Ingrese un año válido.");
@@ -58,26 +87,21 @@ namespace proyectoDAE
 
             string descripcion = txtDescripcion.Text;
 
-            if (contadorImplementos < nombresImplementos.Length)
+            var nuevoImplemento = new Implemento
             {
-                // Agregar los valores
-                nombresImplementos[contadorImplementos] = nombreImplemento;
-                tiposImplementos[contadorImplementos] = deporte;
-                aniosImplementos[contadorImplementos] = anio;
-                descripcionesImplementos[contadorImplementos] = descripcion;
+                Tipo = Tipo,
+                Anio = anio,
+                Descripcion = descripcion,
+                Cantidad = 1,
+                IdDeporte = dbContext.Deportes.FirstOrDefault(d => d.NombreDeporte == tipoDeporte)?.IdDeporte ?? 0
+            };
 
-                // Actualizar el DataGridView
-                dataGridView1.Rows.Add(nombreImplemento, deporte, anio, descripcion);
+            dbContext.Implementos.Add(nuevoImplemento);
+            dbContext.SaveChanges();
 
-                // Incrementar el contador
-                contadorImplementos++;
+            LoadImplementos();
 
-                MessageBox.Show("Implemento agregado correctamente.");
-            }
-            else
-            {
-                MessageBox.Show("No se pueden agregar más implementos, se ha alcanzado el límite.");
-            }
+            MessageBox.Show("Implemento agregado correctamente.");
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -85,22 +109,18 @@ namespace proyectoDAE
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int index = dataGridView1.SelectedRows[0].Index;
+                string descripcionImplemento = dataGridView1.Rows[index].Cells[3].Value.ToString();
 
-                // Eliminar implemento
-                dataGridView1.Rows.RemoveAt(index);
-
-                for (int i = index; i < contadorImplementos - 1; i++)
+                var implemento = dbContext.Implementos.FirstOrDefault(i => i.Descripcion == descripcionImplemento);
+                if (implemento != null)
                 {
-                    nombresImplementos[i] = nombresImplementos[i + 1];
-                    tiposImplementos[i] = tiposImplementos[i + 1];
-                    aniosImplementos[i] = aniosImplementos[i + 1];
-                    descripcionesImplementos[i] = descripcionesImplementos[i + 1];
+                    dbContext.Implementos.Remove(implemento);
+                    dbContext.SaveChanges();
+
+                    LoadImplementos();
+
+                    MessageBox.Show("Implemento eliminado correctamente.");
                 }
-
-                // Reducir el contador de implementos
-                contadorImplementos--;
-
-                MessageBox.Show("Implemento eliminado correctamente.");
             }
             else
             {
@@ -110,37 +130,37 @@ namespace proyectoDAE
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            // Verificar si hay una fila seleccionada
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int index = dataGridView1.SelectedRows[0].Index;
+                string descripcionImplemento = dataGridView1.Rows[index].Cells[3].Value.ToString();
 
-                // Obtener los valores actuales de los controles
-                string nuevoNombre = txtImplementos.Text;
-                string nuevoDeporte = cmbbox.SelectedItem != null ? cmbbox.SelectedItem.ToString() : "";
-                bool anioValido = int.TryParse(txtAnio.Text, out int nuevoAnio);
-                string nuevaDescripcion = txtDescripcion.Text;
+                var implemento = dbContext.Implementos.FirstOrDefault(i => EF.Functions.Like(i.Descripcion, descripcionImplemento));
 
-                if (!string.IsNullOrWhiteSpace(nuevoNombre) && !string.IsNullOrWhiteSpace(nuevoDeporte) &&
-                    anioValido && !string.IsNullOrWhiteSpace(nuevaDescripcion))
+                if (implemento != null)
                 {
-                    // Actualizar los valores
-                    nombresImplementos[index] = nuevoNombre;
-                    tiposImplementos[index] = nuevoDeporte;
-                    aniosImplementos[index] = nuevoAnio;
-                    descripcionesImplementos[index] = nuevaDescripcion;
+                    string nuevoNombre = txtImplementos.Text;
+                    string nuevoTipoDeporte = cmbbox.SelectedItem != null ? cmbbox.SelectedItem.ToString() : "";
+                    bool anioValido = int.TryParse(txtAnio.Text, out int nuevoAnio);
+                    string nuevaDescripcion = txtDescripcion.Text;
 
-                    // Actualizar el DataGridView
-                    dataGridView1.Rows[index].Cells[0].Value = nuevoNombre;
-                    dataGridView1.Rows[index].Cells[1].Value = nuevoDeporte;
-                    dataGridView1.Rows[index].Cells[2].Value = nuevoAnio;
-                    dataGridView1.Rows[index].Cells[3].Value = nuevaDescripcion;
+                    if (!string.IsNullOrWhiteSpace(nuevoNombre) && !string.IsNullOrWhiteSpace(nuevoTipoDeporte) &&
+                        anioValido && !string.IsNullOrWhiteSpace(nuevaDescripcion))
+                    {
+                        implemento.Tipo = nuevoTipoDeporte;
+                        implemento.Anio = nuevoAnio;
+                        implemento.Descripcion = nuevaDescripcion;
 
-                    MessageBox.Show("Implemento editado correctamente.");
-                }
-                else
-                {
-                    MessageBox.Show("Ingrese todos los campos correctamente.");
+                        dbContext.SaveChanges();
+
+                        LoadImplementos();
+
+                        MessageBox.Show("Implemento editado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese todos los campos correctamente.");
+                    }
                 }
             }
             else
@@ -151,46 +171,43 @@ namespace proyectoDAE
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Limpiar el DataGridView antes de mostrar los resultados
             dataGridView1.Rows.Clear();
 
             string criterio = cmbBuscar.SelectedItem?.ToString();
             string valorBusqueda = txtBuscar.Text.ToLower();
 
-            // Verificar que se haya seleccionado y que no esté vacío
             if (string.IsNullOrWhiteSpace(criterio) || string.IsNullOrWhiteSpace(valorBusqueda))
             {
                 MessageBox.Show("Seleccione un criterio de búsqueda y escriba un valor.");
                 return;
             }
 
-            // Realizar la búsqueda
-            for (int i = 0; i < contadorImplementos; i++)
+            var implementos = dbContext.Implementos.ToList();
+
+            foreach (var implemento in implementos)
             {
                 bool encontrado = false;
 
-                // Buscar por criterio
-                if (criterio == "Nombre del Implemento" && nombresImplementos[i].ToLower().Contains(valorBusqueda))
+                if (criterio == "Nombre del Implemento" && implemento.Descripcion.ToLower().Contains(valorBusqueda))
                 {
                     encontrado = true;
                 }
-                else if (criterio == "Tipo de Deporte" && tiposImplementos[i].ToLower().Contains(valorBusqueda))
+                else if (criterio == "Tipo de Deporte" && implemento.Tipo.ToLower().Contains(valorBusqueda))
                 {
                     encontrado = true;
                 }
-                else if (criterio == "Año" && aniosImplementos[i].ToString() == valorBusqueda)
+                else if (criterio == "Año" && implemento.Anio.ToString() == valorBusqueda)
                 {
                     encontrado = true;
                 }
-                else if (criterio == "Descripción" && descripcionesImplementos[i].ToLower().Contains(valorBusqueda))
+                else if (criterio == "Descripción" && implemento.Descripcion.ToLower().Contains(valorBusqueda))
                 {
                     encontrado = true;
                 }
 
-                // Si se encontró el resultado, agregarlo
                 if (encontrado)
                 {
-                    dataGridView1.Rows.Add(nombresImplementos[i], tiposImplementos[i], aniosImplementos[i], descripcionesImplementos[i]);
+                    dataGridView1.Rows.Add(implemento.Descripcion, implemento.Tipo, implemento.Anio, implemento.Descripcion);
                 }
             }
 
@@ -199,11 +216,39 @@ namespace proyectoDAE
                 MessageBox.Show("No se encontraron resultados.");
             }
         }
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
 
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var filaSeleccionada = dataGridView1.SelectedRows[0];
+
+                // Extraer los valores de las celdas
+                string nombreImplemento = filaSeleccionada.Cells["Tipo"].Value?.ToString() ?? "";
+                string nombreDeporte = filaSeleccionada.Cells["deporte"].Value?.ToString() ?? "";
+                string anioTexto = filaSeleccionada.Cells["anio"].Value?.ToString() ?? "0";
+                string descripcion = filaSeleccionada.Cells["descripcion"].Value?.ToString() ?? "";
+
+                // Asignar los valores a los controles
+                txtImplementos.Text = nombreImplemento;
+                txtDescripcion.Text = descripcion;
+
+                if (int.TryParse(anioTexto, out int anio))
+                {
+                    txtAnio.Text = anio.ToString();
+                }
+                else
+                {
+                    txtAnio.Text = "0"; // Valor predeterminado si no es válido
+                }
+
+                cmbbox.SelectedItem = nombreDeporte; // Seleccionar el deporte en el ComboBox
+            }
+        }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            LoadImplementos();
         }
     }
 }
-
-

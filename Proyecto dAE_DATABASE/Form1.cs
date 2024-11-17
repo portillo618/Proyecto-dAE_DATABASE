@@ -292,7 +292,7 @@ namespace Prestaform
                     // Actualizar la fecha de préstamo y devolución
                     prestamo.FechaPrestamo = DateOnly.FromDateTime(dtPrestamo.Value);
                     prestamo.FechaDevolucion = DateOnly.FromDateTime(dtDevolucion.Value);
-                    
+
 
                     // Actualizar los detalles del préstamo
                     var detalle = prestamo.DetallePrestamos.FirstOrDefault();
@@ -340,7 +340,7 @@ namespace Prestaform
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void DataGridPrestamos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -396,6 +396,90 @@ namespace Prestaform
 
                 }
             }
+        }
+
+        private void btnBuscar2_Click(object sender, EventArgs e)
+        {
+            string parametro = cmbParametro.SelectedItem.ToString();
+            string busqueda = txtbBuscar.Text.Trim();
+
+            if (string.IsNullOrEmpty(busqueda))
+            {
+                MessageBox.Show("Por favor, ingresa un término de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var context = new BodegaContext())
+            {
+                // Nueva consulta desde DetallePrestamos
+                var prestamosQuery = context.DetallePrestamos
+                    .Include(dp => dp.IdPrestamoNavigation)
+                    .ThenInclude(p => p.IdReceptorNavigation)
+                    .Include(dp => dp.IdPrestamoNavigation)
+                    .ThenInclude(p => p.IdEncargadoPrestamoNavigation)
+                    .Include(dp => dp.IdImplementoNavigation)
+                    .ThenInclude(i => i.IdDeporteNavigation)
+                    .AsQueryable();
+
+                switch (parametro)
+                {
+                    case "ID Préstamo":
+                        if (int.TryParse(busqueda, out int idPrestamo))
+                        {
+                            prestamosQuery = prestamosQuery.Where(dp => dp.IdPrestamo == idPrestamo);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El ID del préstamo debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        break;
+
+                    case "Usuario":
+                        prestamosQuery = prestamosQuery.Where(dp => dp.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario.Contains(busqueda));
+                        break;
+
+                    case "Encargado":
+                        prestamosQuery = prestamosQuery.Where(dp => dp.IdPrestamoNavigation.IdEncargadoPrestamoNavigation.NombreEncargado.Contains(busqueda));
+                        break;
+
+                    case "Implemento":
+                        prestamosQuery = prestamosQuery.Where(dp => dp.IdImplementoNavigation.Tipo.Contains(busqueda));
+                        break;
+
+                    case "Deporte":
+                        prestamosQuery = prestamosQuery.Where(dp => dp.IdImplementoNavigation.IdDeporteNavigation.NombreDeporte.Contains(busqueda));
+                        break;
+
+                    default:
+                        MessageBox.Show("Parámetro de búsqueda no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                }
+
+                // Ajustar la proyección
+                var resultados = prestamosQuery.Select(dp => new
+                {
+                    IDPrestamo = dp.IdPrestamo,
+                    Usuario = dp.IdPrestamoNavigation.IdReceptorNavigation.NombreUsuario,
+                    Encargado = dp.IdPrestamoNavigation.IdEncargadoPrestamoNavigation.NombreEncargado,
+                    Implemento = dp.IdImplementoNavigation.Tipo,
+                    Deporte = dp.IdImplementoNavigation.IdDeporteNavigation.NombreDeporte,
+                    FechaPrestamo = dp.IdPrestamoNavigation.FechaPrestamo,
+                    FechaDevolucion = dp.IdPrestamoNavigation.FechaDevolucion
+                }).ToList();
+
+                DataGridPrestamos.DataSource = resultados;
+
+                if (resultados.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron resultados.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            CargarPrestamos();
         }
     }
 }

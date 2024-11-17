@@ -45,10 +45,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe Fluent Icons", 28.2F, FontStyle.Bold);
-            label1.Location = new Point(6, 179);
+            label1.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Bold);
+            label1.Location = new Point(5, 134);
             label1.Name = "label1";
-            label1.Size = new Size(211, 47);
+            label1.Size = new Size(221, 44);
             label1.TabIndex = 0;
             label1.Text = "ACCESO A";
             // 
@@ -56,29 +56,27 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Emoji", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(108, 346);
+            label2.Location = new Point(94, 260);
             label2.Name = "label2";
-            label2.Size = new Size(251, 31);
+            label2.Size = new Size(209, 26);
             label2.TabIndex = 1;
             label2.Text = "NUMERO DE CARNET";
-           // label2.Click += label2_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Emoji", 13.2F, FontStyle.Bold);
-            label3.Location = new Point(141, 439);
+            label3.Location = new Point(123, 329);
             label3.Name = "label3";
-            label3.Size = new Size(162, 30);
+            label3.Size = new Size(134, 24);
             label3.TabIndex = 2;
             label3.Text = "CONTRASEÑA";
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(86, 499);
-            btnLogin.Margin = new Padding(3, 4, 3, 4);
+            btnLogin.Location = new Point(75, 374);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(131, 51);
+            btnLogin.Size = new Size(115, 38);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "LOGIN";
             btnLogin.TextImageRelation = TextImageRelation.ImageAboveText;
@@ -87,10 +85,9 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(245, 499);
-            btnSalir.Margin = new Padding(3, 4, 3, 4);
+            btnSalir.Location = new Point(214, 374);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(131, 51);
+            btnSalir.Size = new Size(115, 38);
             btnSalir.TabIndex = 4;
             btnSalir.Text = "SALIR";
             btnSalir.UseVisualStyleBackColor = true;
@@ -98,49 +95,46 @@
             // 
             // txtbUsuario
             // 
-            txtbUsuario.Location = new Point(120, 315);
-            txtbUsuario.Margin = new Padding(3, 4, 3, 4);
+            txtbUsuario.Location = new Point(105, 236);
             txtbUsuario.Name = "txtbUsuario";
-            txtbUsuario.Size = new Size(228, 27);
+            txtbUsuario.Size = new Size(200, 23);
             txtbUsuario.TabIndex = 5;
-           // txtbUsuario.TextChanged += txtbUsuario_TextChanged;
             // 
             // txtbContrasenia
             // 
-            txtbContrasenia.Location = new Point(120, 408);
-            txtbContrasenia.Margin = new Padding(3, 4, 3, 4);
+            txtbContrasenia.Location = new Point(105, 306);
             txtbContrasenia.Name = "txtbContrasenia";
             txtbContrasenia.PasswordChar = '*';
-            txtbContrasenia.Size = new Size(228, 27);
+            txtbContrasenia.Size = new Size(200, 23);
             txtbContrasenia.TabIndex = 6;
-           // txtbContrasenia.TextChanged += txtbContrasenia_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe Fluent Icons", 28.2F, FontStyle.Bold);
-            label4.Location = new Point(217, 179);
+            label4.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Bold);
+            label4.Location = new Point(190, 134);
             label4.Name = "label4";
-            label4.Size = new Size(240, 47);
+            label4.Size = new Size(258, 44);
             label4.TabIndex = 7;
             label4.Text = "INVENTARIO";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe Fluent Icons", 28.2F, FontStyle.Bold);
-            label5.Location = new Point(108, 226);
+            label5.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Bold);
+            label5.Location = new Point(94, 170);
             label5.Name = "label5";
-            label5.Size = new Size(239, 47);
+            label5.Size = new Size(252, 44);
             label5.TabIndex = 8;
             label5.Text = "DE BODEGA";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackgroundImage = (Image)resources.GetObject("flowLayoutPanel1.BackgroundImage");
-            flowLayoutPanel1.Location = new Point(74, 26);
+            flowLayoutPanel1.Location = new Point(65, 20);
+            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(314, 138);
+            flowLayoutPanel1.Size = new Size(314, 148);
             flowLayoutPanel1.TabIndex = 9;
             // 
             // helpProvider1
@@ -149,10 +143,10 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(464, 600);
+            ClientSize = new Size(439, 450);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -163,7 +157,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

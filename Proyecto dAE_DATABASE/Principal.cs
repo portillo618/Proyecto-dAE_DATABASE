@@ -26,7 +26,7 @@ namespace Proyecto_dAE_DATABASE
         {
             if (this.usuario.IdRol == 3)
             {
-                
+
                 Devoluciones frmde = new Devoluciones(this.usuario.NombreUsuario);
                 frmde.MdiParent = this;
                 frmde.Show();
@@ -46,29 +46,20 @@ namespace Proyecto_dAE_DATABASE
 
         private void gESTIONDEIMPLEMENTOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.usuario.IdRol == 2 || this.usuario.IdRol == 3)
-            {
-                FormImplementos frmdes = new FormImplementos();
-                frmdes.MdiParent = this;
-                frmdes.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
         }
 
         private void iNGRESOMATERIALNUEVOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.usuario.IdRol == 3)
             {
-                IngresoMaterialNuevo frmde = new IngresoMaterialNuevo();
-                frmde.MdiParent = this;
-                frmde.Show();
+                IngresoMaterialNuevo frmUs = new IngresoMaterialNuevo();
+                frmUs.MdiParent = this;
+                frmUs.Show();
             }
             else
             {
-                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.");
+                MessageBox.Show("No tienes permisos para acceder a esta sección.");
             }
         }
 
@@ -97,6 +88,61 @@ namespace Proyecto_dAE_DATABASE
             else
             {
                 MessageBox.Show("No tienes permisos para acceder a esta sección.");
+            }
+        }
+
+        private void sALIRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Crear una nueva instancia del formulario de login
+            Login formLogin = new Login();
+
+            // Mostrar el formulario de login
+            formLogin.Show();
+
+            // Cerrar el formulario principal
+            this.Close();
+
+        }
+
+        private void uSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                IngresoMaterialNuevo frmde = new IngresoMaterialNuevo();
+                frmde.MdiParent = this;
+                frmde.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.");
+            }
+        }
+
+        private void iMPLEMENTOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                FormImplementos frmdes = new FormImplementos();
+                frmdes.MdiParent = this;
+                frmdes.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void dEPORTESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.usuario.IdRol == 3)
+            {
+                Deportes frmdes = new Deportes();
+                frmdes.MdiParent = this;
+                frmdes.Show();
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para acceder a esta funcionalidad.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
