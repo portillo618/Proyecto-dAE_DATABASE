@@ -66,5 +66,10 @@ namespace Proyecto_dAE_DATABASE
                 Application.Exit(); // Cierra la aplicación
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -39,6 +39,7 @@
             label4 = new Label();
             label5 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            helpProvider1 = new HelpProvider();
             SuspendLayout();
             // 
             // label1
@@ -59,7 +60,8 @@
             label2.Name = "label2";
             label2.Size = new Size(251, 31);
             label2.TabIndex = 1;
-            label2.Text = "CARNET DE USUARIO";
+            label2.Text = "NUMERO DE CARNET";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -116,7 +118,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe Fluent Icons", 28.2F, FontStyle.Bold);
-            label4.Location = new Point(223, 179);
+            label4.Location = new Point(217, 179);
             label4.Name = "label4";
             label4.Size = new Size(240, 47);
             label4.TabIndex = 7;
@@ -139,6 +141,10 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(314, 138);
             flowLayoutPanel1.TabIndex = 9;
+            // 
+            // helpProvider1
+            // 
+            helpProvider1.HelpNamespace = "Problemas reportarlos al administrador del sistema";
             // 
             // Login
             // 
@@ -175,5 +181,6 @@
         private Label label4;
         private Label label5;
         private FlowLayoutPanel flowLayoutPanel1;
+        private HelpProvider helpProvider1;
     }
 }

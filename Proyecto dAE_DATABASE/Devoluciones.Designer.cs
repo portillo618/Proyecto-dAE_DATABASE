@@ -173,6 +173,7 @@
             Controls.Add(txtIDUsuario);
             Name = "Devoluciones";
             Text = "Gestión Devoluciones";
+            WindowState = FormWindowState.Maximized;
             Load += Devoluciones_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).EndInit();
             ResumeLayout(false);
